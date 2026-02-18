@@ -1345,13 +1345,509 @@
     </section>
     </div>
 
-    <!-- 페이지 2: 먹는 약이 너무 많아 -->
-    <div class="page page-2-new" style="background-image: url('2페이지.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(100, 100, 100, 0.35); backdrop-filter: blur(4px);"></div>
-    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0; height: 100%; width: 100%; position: relative; z-index: 1;">
-      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0 0 clamp(16px, 3vh, 28px); line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">먹는 약이 너무 많아 매번 복용을 깜빡하셨나요?</p>
-      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">복약 알람 앱을 사용하려니 약을 일일히 입력하기 귀찮으셨나요?</p>
-    </section>
+    <!-- 페이지 2: 복약 비교 자동 데모 -->
+    <div class="page" id="demo-page" style="background: #f0f4ff; border-top: 1px solid rgba(0,0,0,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: clamp(24px, 5vh, 56px);">
+      <style>
+        #demo-page * { box-sizing: border-box; }
+        .demo-wrap {
+          display: flex;
+          flex-direction: row;
+          gap: clamp(24px, 5vw, 60px);
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          max-width: 740px;
+          padding: 0 clamp(10px, 2vw, 24px);
+          height: 100%;
+        }
+        .demo-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: clamp(8px, 1.5vh, 14px);
+          max-width: 280px;
+          width: 100%;
+        }
+        .demo-phone {
+          width: 100%;
+          max-width: 280px;
+          min-width: 0;
+          background: #fff;
+          border-radius: 28px;
+          border: 2px solid #e0e0e6;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          height: clamp(380px, 62vh, 520px);
+        }
+        .demo-phone-header {
+          background: #423FEB;
+          color: #fff;
+          padding: clamp(10px, 1.8vh, 16px) clamp(12px, 2vw, 18px);
+          font-size: clamp(0.82rem, 1.8vw, 0.95rem);
+          font-weight: 700;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-radius: 26px 26px 0 0;
+        }
+        .demo-phone-header .demo-label {
+          font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+          font-weight: 600;
+          background: rgba(255,255,255,0.22);
+          padding: 3px 10px;
+          border-radius: 99px;
+        }
+        .demo-phone-body {
+          flex: 1 1 0;
+          min-height: 0;
+          overflow-y: auto;
+          padding: clamp(8px, 1.2vh, 14px) clamp(10px, 1.5vw, 16px);
+          display: flex;
+          flex-direction: column;
+          gap: clamp(6px, 1vh, 10px);
+          background: #fafafe;
+        }
+        .demo-phone-body > .demo-center-btn-wrap {
+          flex: 1 1 0;
+          min-height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .demo-phone-body::-webkit-scrollbar { width: 3px; }
+        .demo-phone-body::-webkit-scrollbar-thumb { background: #d0d0d8; border-radius: 3px; }
+        .demo-med-item {
+          background: #fff;
+          border: 1px solid #ebebf0;
+          border-radius: 12px;
+          padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.5vw, 14px);
+          opacity: 0;
+          transform: translateY(8px);
+          transition: opacity 0.35s, transform 0.35s;
+        }
+        .demo-med-item.show { opacity: 1; transform: translateY(0); }
+        .demo-med-name {
+          font-size: clamp(0.78rem, 1.6vw, 0.88rem);
+          font-weight: 700;
+          color: #1f2937;
+          margin-bottom: 3px;
+        }
+        .demo-med-detail {
+          font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+          color: #6b7280;
+          line-height: 1.45;
+        }
+        .demo-btn {
+          display: block;
+          width: 100%;
+          padding: clamp(9px, 1.5vh, 13px);
+          background: #423FEB;
+          color: #fff;
+          font-size: clamp(0.75rem, 1.5vw, 0.88rem);
+          font-weight: 700;
+          border: none;
+          border-radius: 12px;
+          cursor: default;
+          text-align: center;
+          flex-shrink: 0;
+          margin-top: auto;
+          transition: opacity 0.3s, transform 0.15s;
+          font-family: inherit;
+        }
+        .demo-btn.clicked { transform: scale(0.96); opacity: 0.8; }
+        .demo-timer {
+          text-align: center;
+          font-size: clamp(0.92rem, 2vw, 1.1rem);
+          font-weight: 800;
+          color: #423FEB;
+          padding: clamp(6px, 1vh, 12px) clamp(14px, 2vw, 24px);
+          background: rgba(66,63,235,0.08);
+          border-radius: 12px;
+          min-height: clamp(28px, 4vh, 40px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          letter-spacing: -0.01em;
+        }
+        /* Bottom sheet modal */
+        .demo-sheet-overlay {
+          display: none;
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.3);
+          z-index: 10;
+          border-radius: 26px;
+          overflow: hidden;
+        }
+        .demo-sheet-overlay.show { display: block; }
+        .demo-sheet {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #fff;
+          border-radius: 18px 18px 0 0;
+          padding: clamp(10px, 1.5vh, 16px) clamp(12px, 2vw, 16px) clamp(8px, 1vh, 12px);
+          transform: translateY(100%);
+          transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1);
+          z-index: 11;
+        }
+        .demo-sheet-overlay.show .demo-sheet { transform: translateY(0); }
+        .demo-sheet-title {
+          font-size: clamp(0.75rem, 1.5vw, 0.88rem);
+          font-weight: 700;
+          color: #1f2937;
+          margin-bottom: clamp(6px, 1vh, 10px);
+        }
+        .demo-sheet-field {
+          margin-bottom: clamp(4px, 0.6vh, 7px);
+        }
+        .demo-sheet-field label {
+          display: block;
+          font-size: clamp(0.58rem, 1.1vw, 0.68rem);
+          font-weight: 600;
+          color: #6b7280;
+          margin-bottom: 2px;
+        }
+        .demo-sheet-field .demo-input {
+          width: 100%;
+          padding: clamp(5px, 0.8vh, 8px) clamp(8px, 1.2vw, 12px);
+          border: 1.5px solid #e5e7eb;
+          border-radius: 8px;
+          font-size: clamp(0.65rem, 1.2vw, 0.76rem);
+          font-family: inherit;
+          color: #1f2937;
+          background: #fafafe;
+          outline: none;
+        }
+        .demo-sheet-field .demo-input.typing { border-color: #423FEB; }
+        .demo-sheet-save {
+          width: 100%;
+          padding: clamp(7px, 1vh, 10px);
+          background: #423FEB;
+          color: #fff;
+          border: none;
+          border-radius: 10px;
+          font-size: clamp(0.68rem, 1.3vw, 0.78rem);
+          font-weight: 700;
+          cursor: default;
+          margin-top: clamp(4px, 0.6vh, 8px);
+          font-family: inherit;
+          transition: transform 0.15s;
+        }
+        .demo-sheet-save.clicked { transform: scale(0.96); }
+        /* Loading spinner */
+        .demo-loading {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 20px 0;
+        }
+        .demo-loading.show { display: flex; }
+        .demo-spinner {
+          width: 28px; height: 28px;
+          border: 3px solid #e5e7eb;
+          border-top-color: #423FEB;
+          border-radius: 50%;
+          animation: demo-spin 0.7s linear infinite;
+        }
+        @keyframes demo-spin { to { transform: rotate(360deg); } }
+        .demo-loading-text {
+          font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+          color: #6b7280;
+          font-weight: 600;
+        }
+        /* Pause indicator */
+        .demo-pause-indicator {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(0,0,0,0.6);
+          color: #fff;
+          padding: 8px 18px;
+          border-radius: 12px;
+          font-size: clamp(0.7rem, 1.4vw, 0.82rem);
+          font-weight: 600;
+          z-index: 50;
+          pointer-events: none;
+        }
+        .demo-pause-indicator.show { display: block; }
+      </style>
+
+      <div class="demo-wrap">
+        <!-- 좌측: 수기 입력 -->
+        <div class="demo-col">
+          <div style="text-align:center;margin-bottom:clamp(6px,0.8vh,10px);">
+            <span style="font-size:clamp(1.1rem,2.8vw,1.45rem);font-weight:800;color:#4b5563;letter-spacing:-0.02em;">타 서비스</span>
+            <span style="font-size:clamp(0.82rem,1.8vw,0.95rem);font-weight:600;color:#9ca3af;display:block;margin-top:4px;">(수기입력)</span>
+          </div>
+          <div class="demo-phone" id="demo-left" style="position: relative;">
+            <div class="demo-phone-header">
+              <span>오늘 복약 현황</span>
+              <span class="demo-label">수기 입력</span>
+            </div>
+            <div class="demo-phone-body" id="demo-left-body">
+              <div class="demo-center-btn-wrap">
+                <div class="demo-btn" id="demo-add-btn" style="width:auto;padding:clamp(9px,1.5vh,13px) clamp(20px,3vw,32px);border-radius:12px;">+ 약물 추가</div>
+              </div>
+            </div>
+            <!-- Bottom sheet -->
+            <div class="demo-sheet-overlay" id="demo-sheet-overlay">
+              <div class="demo-sheet" id="demo-sheet">
+                <div class="demo-sheet-title">약물 추가</div>
+                <div class="demo-sheet-field"><label>약물명</label><div class="demo-input" id="ds-name"></div></div>
+                <div class="demo-sheet-field"><label>용량</label><div class="demo-input" id="ds-dose"></div></div>
+                <div class="demo-sheet-field"><label>복용 횟수</label><div class="demo-input" id="ds-freq"></div></div>
+                <div class="demo-sheet-field"><label>시작일</label><div class="demo-input" id="ds-date"></div></div>
+                <div class="demo-sheet-field"><label>처방 병원</label><div class="demo-input" id="ds-hospital"></div></div>
+                <div class="demo-sheet-save" id="ds-save">저장</div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-timer" id="demo-left-timer"></div>
+        </div>
+
+        <!-- 우측: 처방 연동 -->
+        <div class="demo-col">
+          <div style="text-align:center;margin-bottom:clamp(6px,0.8vh,10px);">
+            <span style="font-size:clamp(1.1rem,2.8vw,1.45rem);font-weight:800;color:#423FEB;letter-spacing:-0.02em;">MEDIGUARD</span>
+            <span style="font-size:clamp(0.82rem,1.8vw,0.95rem);font-weight:600;color:#6b69f0;display:block;margin-top:4px;">(PHR API 자동 연동)</span>
+          </div>
+          <div class="demo-phone" id="demo-right" style="position: relative;">
+            <div class="demo-phone-header">
+              <span>오늘 복약 현황</span>
+              <span class="demo-label">자동 연동</span>
+            </div>
+            <div class="demo-phone-body" id="demo-right-body">
+              <div class="demo-center-btn-wrap">
+                <div class="demo-btn" id="demo-sync-btn" style="width:auto;padding:clamp(9px,1.5vh,13px) clamp(20px,3vw,32px);border-radius:12px;">처방 정보 연동하기</div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-timer" id="demo-right-timer"></div>
+        </div>
+      </div>
+      <p style="margin:clamp(8px,1.2vh,16px) 0 clamp(40px,7.5vh,80px);font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:#1f2937;text-align:center;letter-spacing:-0.02em;line-height:1.4;">다른 서비스 대비 입력 시간 <span style="color:#423FEB;">96% 단축</span></p>
+
+      <script>
+      (function() {
+        'use strict';
+        var MEDS = [
+          { name: '타이레놀', dose: '500mg', freq: '1일 3회', date: '2025-01-15', hospital: '서울대학교병원' },
+          { name: '아모디핀', dose: '5mg', freq: '1일 1회', date: '2024-11-20', hospital: '세브란스병원' },
+          { name: '글루코파지', dose: '500mg', freq: '1일 2회', date: '2024-09-05', hospital: '삼성서울병원' },
+          { name: '리피토', dose: '20mg', freq: '1일 1회', date: '2025-02-01', hospital: '아산병원' },
+          { name: '아스피린', dose: '100mg', freq: '1일 1회', date: '2024-12-10', hospital: '서울대학교병원' }
+        ];
+
+        var paused = false;
+        var pauseTimer = null;
+        var demoRunning = false;
+        var loopTimeout = null;
+
+        function sleep(ms) {
+          return new Promise(function(resolve) {
+            var check = function() {
+              if (!paused) { resolve(); return; }
+              setTimeout(check, 100);
+            };
+            setTimeout(check, ms);
+          });
+        }
+
+        function typeText(el, text, charDelay) {
+          charDelay = charDelay || 55;
+          return new Promise(function(resolve) {
+            var i = 0;
+            el.classList.add('typing');
+            var iv = setInterval(function() {
+              if (paused) return;
+              if (i < text.length) {
+                el.textContent += text[i];
+                i++;
+              } else {
+                clearInterval(iv);
+                el.classList.remove('typing');
+                resolve();
+              }
+            }, charDelay);
+          });
+        }
+
+        function clearInputs() {
+          ['ds-name','ds-dose','ds-freq','ds-date','ds-hospital'].forEach(function(id) {
+            document.getElementById(id).textContent = '';
+            document.getElementById(id).classList.remove('typing');
+          });
+        }
+
+        function makeMedHTML(med) {
+          return '<div class="demo-med-name">' + med.name + '</div>' +
+            '<div class="demo-med-detail">' + med.dose + ' · ' + med.freq + '<br>' + med.date + ' · ' + med.hospital + '</div>';
+        }
+
+        function resetLeftBody() {
+          var body = document.getElementById('demo-left-body');
+          body.innerHTML = '<div class="demo-center-btn-wrap"><div class="demo-btn" id="demo-add-btn" style="width:auto;padding:clamp(9px,1.5vh,13px) clamp(20px,3vw,32px);border-radius:12px;">+ 약물 추가</div></div>';
+        }
+
+        function resetRightBody() {
+          var body = document.getElementById('demo-right-body');
+          body.innerHTML = '<div class="demo-center-btn-wrap"><div class="demo-btn" id="demo-sync-btn" style="width:auto;padding:clamp(9px,1.5vh,13px) clamp(20px,3vw,32px);border-radius:12px;">처방 정보 연동하기</div></div>';
+        }
+
+        async function runLeftSide() {
+          var body = document.getElementById('demo-left-body');
+          var timerEl = document.getElementById('demo-left-timer');
+          var addBtn = document.getElementById('demo-add-btn');
+          timerEl.textContent = '';
+
+          // Click center button
+          addBtn.classList.add('clicked');
+          await sleep(200);
+          addBtn.classList.remove('clicked');
+          await sleep(200);
+
+          // Remove center button, start list
+          body.innerHTML = '';
+
+          var startTime = performance.now();
+          var timerIv = setInterval(function() {
+            var elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
+            timerEl.textContent = '총 입력 시간: ' + elapsed + '초';
+          }, 100);
+
+          for (var m = 0; m < MEDS.length; m++) {
+            var med = MEDS[m];
+
+            // Open sheet
+            clearInputs();
+            document.getElementById('demo-sheet-overlay').classList.add('show');
+            await sleep(350);
+
+            // Type each field
+            await typeText(document.getElementById('ds-name'), med.name, 65);
+            await sleep(120);
+            await typeText(document.getElementById('ds-dose'), med.dose, 55);
+            await sleep(120);
+            await typeText(document.getElementById('ds-freq'), med.freq, 50);
+            await sleep(120);
+            await typeText(document.getElementById('ds-date'), med.date, 45);
+            await sleep(120);
+            await typeText(document.getElementById('ds-hospital'), med.hospital, 50);
+            await sleep(200);
+
+            // Save
+            var saveBtn = document.getElementById('ds-save');
+            saveBtn.classList.add('clicked');
+            await sleep(200);
+            saveBtn.classList.remove('clicked');
+            await sleep(150);
+
+            // Close sheet
+            document.getElementById('demo-sheet-overlay').classList.remove('show');
+            await sleep(250);
+
+            // Add item to list
+            var item = document.createElement('div');
+            item.className = 'demo-med-item';
+            item.innerHTML = makeMedHTML(med);
+            body.appendChild(item);
+            await sleep(50);
+            item.classList.add('show');
+            body.scrollTop = body.scrollHeight;
+            await sleep(300);
+          }
+
+          clearInterval(timerIv);
+          var totalTime = ((performance.now() - startTime) / 1000).toFixed(1);
+          timerEl.textContent = '총 입력 시간: ' + totalTime + '초';
+        }
+
+        async function runRightSide() {
+          var body = document.getElementById('demo-right-body');
+          var timerEl = document.getElementById('demo-right-timer');
+          var syncBtn = document.getElementById('demo-sync-btn');
+          timerEl.textContent = '';
+
+          // Click center button
+          syncBtn.classList.add('clicked');
+          await sleep(200);
+          syncBtn.classList.remove('clicked');
+          await sleep(200);
+
+          // Replace with loading
+          body.innerHTML = '<div class="demo-loading show" id="demo-right-loading"><div class="demo-spinner"></div><div class="demo-loading-text">처방 정보를 불러오는 중...</div></div>';
+          await sleep(1000);
+
+          // Remove loading, add items
+          body.innerHTML = '';
+          var startTime = performance.now();
+          for (var m = 0; m < MEDS.length; m++) {
+            var item = document.createElement('div');
+            item.className = 'demo-med-item';
+            item.innerHTML = makeMedHTML(MEDS[m]);
+            body.appendChild(item);
+          }
+          await sleep(50);
+          var items = body.querySelectorAll('.demo-med-item');
+          for (var i = 0; i < items.length; i++) {
+            (function(idx) {
+              setTimeout(function() { items[idx].classList.add('show'); }, idx * 80);
+            })(i);
+          }
+          await sleep(items.length * 80 + 200);
+
+          var elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
+          timerEl.textContent = '자동 연동 완료: ' + elapsed + '초';
+        }
+
+        async function runDemo() {
+          if (demoRunning) return;
+          demoRunning = true;
+
+          while (demoRunning) {
+            // Reset - buttons centered
+            resetLeftBody();
+            resetRightBody();
+            document.getElementById('demo-left-timer').textContent = '';
+            document.getElementById('demo-right-timer').textContent = '';
+            document.getElementById('demo-sheet-overlay').classList.remove('show');
+
+            await sleep(800);
+
+            // Run left side (manual input)
+            await runLeftSide();
+            await sleep(600);
+
+            // Run right side (auto sync)
+            await runRightSide();
+
+            // Wait then loop
+            await sleep(8000);
+          }
+        }
+
+        // Start demo when page becomes visible via IntersectionObserver
+        var demoPage = document.getElementById('demo-page');
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !demoRunning) {
+              runDemo();
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(demoPage);
+      })();
+      </script>
     </div>
 
     <!-- 페이지 3: Solution -->
@@ -1412,14 +1908,287 @@
     </section>
     </div>
 
-    <!-- 페이지 8: 가족 복약 공유 Solution -->
-    <div class="page" style="background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14);">
-    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-      <h2 class="problem-page-label">Solution</h2>
-      <p class="problem-page-answer" style="font-size: clamp(1rem, 2.5vh, 1.2rem); margin-bottom: clamp(4px, 1vh, 10px);">메디가드는 <strong>가족과 복약 현황을 공유</strong>할 수 있어요</p>
-      <p style="font-size: clamp(0.85rem, 2vh, 1rem); color: var(--gray-600); margin: 0 0 clamp(20px, 3.5vh, 32px); line-height: 1.65; text-align: center; max-width: min(480px, 90vw);">떨어져 있어도 부모님이 오늘 약을 드셨는지,<br />어떤 약을 쓰고 계신지 앱으로 실시간 확인할 수 있습니다</p>
-      <img src="page1_ui.png" alt="메디가드 앱 UI - 가족 복약 공유" style="display: block; width: auto; height: auto; max-width: 280px; max-height: 63vh; object-fit: contain; border-radius: 32px;" />
-    </section>
+    <!-- 페이지 8: 가족 복약 공유 데모 -->
+    <div class="page" id="family-demo-page" style="background: #f0f4ff; border-top: 1px solid rgba(0,0,0,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: clamp(24px, 5vh, 56px);">
+      <style>
+        #family-demo-page .fd-top { text-align: center; margin-bottom: clamp(6px, 1vh, 12px); flex-shrink: 0; }
+        #family-demo-page .fd-top-label { display: inline-block; padding: clamp(6px,1vh,10px) clamp(14px,2.5vw,22px); font-size: clamp(0.78rem,1.8vw,0.95rem); font-weight: 700; color: #fff; background: #423FEB; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
+        #family-demo-page .fd-top-desc { margin: clamp(16px,4vh,40px) 0 0; font-size: clamp(1.1rem,3vw,1.45rem); color: #1f2937; font-weight: 800; line-height: 1.4; letter-spacing: -0.02em; }
+        #family-demo-page .fd-wrap {
+          display: flex; flex-direction: row; gap: clamp(24px,5vw,60px);
+          align-items: center; justify-content: center;
+          width: 100%; max-width: 740px; padding: 0 clamp(10px,2vw,24px);
+          flex: 1; min-height: 0;
+        }
+        #family-demo-page .fd-col {
+          display: flex; flex-direction: column; align-items: center;
+          gap: clamp(4px,0.6vh,8px); max-width: 280px; width: 100%;
+        }
+        #family-demo-page .fd-col-title { text-align: center; margin-bottom: clamp(6px,0.8vh,10px); }
+        #family-demo-page .fd-col-title-main { font-size: clamp(1.1rem,2.8vw,1.45rem); font-weight: 800; letter-spacing: -0.02em; }
+        #family-demo-page .fd-col-title-sub { font-size: clamp(0.82rem,1.8vw,0.95rem); font-weight: 600; display: block; margin-top: 3px; }
+        #family-demo-page .fd-phone {
+          width: 100%; max-width: 280px; background: #fff; border-radius: 28px;
+          border: 2px solid #e0e0e6; box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+          display: flex; flex-direction: column; overflow: hidden;
+          height: clamp(380px, 62vh, 520px);
+        }
+        #family-demo-page .fd-phone-header {
+          background: #423FEB; color: #fff;
+          padding: clamp(10px,1.8vh,16px) clamp(12px,2vw,18px);
+          font-size: clamp(0.82rem,1.8vw,0.95rem); font-weight: 700;
+          flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+          border-radius: 26px 26px 0 0;
+        }
+        #family-demo-page .fd-phone-body {
+          flex: 1 1 0; min-height: 0; overflow-y: auto;
+          padding: clamp(8px,1.2vh,14px) clamp(10px,1.5vw,16px);
+          display: flex; flex-direction: column; gap: clamp(8px,1.2vh,12px);
+          background: #fafafe; position: relative;
+        }
+        #family-demo-page .fd-med-card {
+          background: #fff; border: 1.5px solid #ebebf0; border-radius: 14px;
+          padding: clamp(10px,1.5vh,14px) clamp(12px,1.8vw,16px);
+          display: flex; align-items: center; gap: clamp(8px,1.2vw,12px);
+          transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #family-demo-page .fd-med-card.done { border-color: #22c55e; box-shadow: 0 0 0 1px rgba(34,197,94,0.15); }
+        #family-demo-page .fd-med-info { flex: 1; min-width: 0; }
+        #family-demo-page .fd-med-name { font-size: clamp(0.78rem,1.6vw,0.88rem); font-weight: 700; color: #1f2937; }
+        #family-demo-page .fd-med-detail { font-size: clamp(0.62rem,1.2vw,0.72rem); color: #6b7280; margin-top: 2px; }
+        #family-demo-page .fd-med-time { font-size: clamp(0.58rem,1.1vw,0.68rem); color: #22c55e; font-weight: 700; margin-top: 3px; display: none; }
+        #family-demo-page .fd-med-card.done .fd-med-time { display: block; }
+        #family-demo-page .fd-done-btn {
+          flex-shrink: 0; padding: clamp(6px,1vh,10px) clamp(10px,1.5vw,16px);
+          background: #423FEB; color: #fff; border: none; border-radius: 10px;
+          font-size: clamp(0.65rem,1.3vw,0.76rem); font-weight: 700;
+          cursor: default; font-family: inherit; transition: transform 0.15s, background 0.3s;
+          white-space: nowrap;
+        }
+        #family-demo-page .fd-done-btn.clicked { transform: scale(0.92); }
+        #family-demo-page .fd-done-btn.completed { background: #22c55e; pointer-events: none; }
+        /* Toast notification */
+        #family-demo-page .fd-toast {
+          position: absolute; top: 8px; left: 8px; right: 8px;
+          background: #1f2937; color: #fff; border-radius: 12px;
+          padding: clamp(8px,1.2vh,12px) clamp(10px,1.5vw,14px);
+          font-size: clamp(0.62rem,1.2vw,0.72rem); font-weight: 600;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 10;
+          transform: translateY(-120%); opacity: 0;
+          transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1), opacity 0.3s;
+          line-height: 1.4;
+        }
+        #family-demo-page .fd-toast.show { transform: translateY(0); opacity: 1; }
+        #family-demo-page .fd-bottom {
+          flex-shrink: 0; text-align: center;
+          margin: clamp(8px,1.2vh,16px) 0 clamp(40px,7.5vh,80px);
+        }
+        #family-demo-page .fd-bottom-text {
+          font-size: clamp(1.1rem,3vw,1.45rem); font-weight: 800;
+          color: #1f2937; letter-spacing: -0.02em;
+        }
+      </style>
+
+      <div class="fd-top">
+        <span class="fd-top-label">Solution</span>
+        <p class="fd-top-desc">메디가드는 <strong style="color:#423FEB;">가족과 복약 현황을 공유</strong>할 수 있어요</p>
+      </div>
+
+      <div class="fd-wrap">
+        <!-- 좌측: 부모/환자 -->
+        <div class="fd-col">
+          <div class="fd-col-title">
+            <span class="fd-col-title-main" style="color:#4b5563;">부모님 화면</span>
+          </div>
+          <div class="fd-phone">
+            <div class="fd-phone-header">오늘 복약 현황 (할머니)</div>
+            <div class="fd-phone-body" id="fd-left-body">
+              <div class="fd-med-card" id="fd-med-0">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">혈압약 (아모디핀)</div>
+                  <div class="fd-med-detail">5mg · 1일 1회 · 아침 식후</div>
+                  <div class="fd-med-time" id="fd-time-0"></div>
+                </div>
+                <button class="fd-done-btn" id="fd-btn-0">복약 완료</button>
+              </div>
+              <div class="fd-med-card" id="fd-med-1">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">당뇨약 (글루코파지)</div>
+                  <div class="fd-med-detail">500mg · 1일 2회 · 식후 30분</div>
+                  <div class="fd-med-time" id="fd-time-1"></div>
+                </div>
+                <button class="fd-done-btn" id="fd-btn-1">복약 완료</button>
+              </div>
+              <div class="fd-med-card" id="fd-med-2">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">위장약 (란소프라졸)</div>
+                  <div class="fd-med-detail">15mg · 1일 1회 · 아침 식전</div>
+                  <div class="fd-med-time" id="fd-time-2"></div>
+                </div>
+                <button class="fd-done-btn" id="fd-btn-2">복약 완료</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 보호자 -->
+        <div class="fd-col">
+          <div class="fd-col-title">
+            <span class="fd-col-title-main" style="color:#423FEB;">보호자 화면</span>
+          </div>
+          <div class="fd-phone">
+            <div class="fd-phone-header">가족 알림 (보호자)</div>
+            <div class="fd-phone-body" id="fd-right-body">
+              <div id="fd-toast" class="fd-toast"></div>
+              <div class="fd-med-card" id="fd-rmed-0">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">혈압약 (아모디핀)</div>
+                  <div class="fd-med-detail">대기 중</div>
+                  <div class="fd-med-time" id="fd-rtime-0"></div>
+                </div>
+                <span style="font-size:clamp(0.65rem,1.3vw,0.76rem);color:#9ca3af;font-weight:600;flex-shrink:0;" id="fd-rstatus-0">미복약</span>
+              </div>
+              <div class="fd-med-card" id="fd-rmed-1">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">당뇨약 (글루코파지)</div>
+                  <div class="fd-med-detail">대기 중</div>
+                  <div class="fd-med-time" id="fd-rtime-1"></div>
+                </div>
+                <span style="font-size:clamp(0.65rem,1.3vw,0.76rem);color:#9ca3af;font-weight:600;flex-shrink:0;" id="fd-rstatus-1">미복약</span>
+              </div>
+              <div class="fd-med-card" id="fd-rmed-2">
+                <div class="fd-med-info">
+                  <div class="fd-med-name">위장약 (란소프라졸)</div>
+                  <div class="fd-med-detail">대기 중</div>
+                  <div class="fd-med-time" id="fd-rtime-2"></div>
+                </div>
+                <span style="font-size:clamp(0.65rem,1.3vw,0.76rem);color:#9ca3af;font-weight:600;flex-shrink:0;" id="fd-rstatus-2">미복약</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function() {
+        'use strict';
+        var MEDS_NAMES = ['혈압약', '당뇨약', '위장약'];
+        var TOAST_MSGS = [
+          '할머니가 혈압약을 복약 완료했어요 ✔',
+          '할머니가 당뇨약을 복약 완료했어요 ✔',
+          '할머니가 위장약을 복약 완료했어요 ✔'
+        ];
+        var fdRunning = false;
+
+        function fdSleep(ms) {
+          return new Promise(function(r) { setTimeout(r, ms); });
+        }
+
+        function getNowTime() {
+          var d = new Date();
+          return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+        }
+
+        function resetAll() {
+          for (var i = 0; i < 3; i++) {
+            var card = document.getElementById('fd-med-' + i);
+            var btn = document.getElementById('fd-btn-' + i);
+            var timeEl = document.getElementById('fd-time-' + i);
+            card.classList.remove('done');
+            btn.textContent = '복약 완료';
+            btn.classList.remove('completed', 'clicked');
+            btn.style.background = '';
+            timeEl.style.display = 'none';
+            timeEl.textContent = '';
+
+            var rcard = document.getElementById('fd-rmed-' + i);
+            var rstatus = document.getElementById('fd-rstatus-' + i);
+            var rtime = document.getElementById('fd-rtime-' + i);
+            rcard.classList.remove('done');
+            rstatus.textContent = '미복약';
+            rstatus.style.color = '#9ca3af';
+            rtime.style.display = 'none';
+            rtime.textContent = '';
+            rcard.querySelector('.fd-med-detail').textContent = '대기 중';
+          }
+          document.getElementById('fd-toast').classList.remove('show');
+          document.getElementById('fd-toast').textContent = '';
+        }
+
+        async function completeMed(idx) {
+          var btn = document.getElementById('fd-btn-' + idx);
+          var card = document.getElementById('fd-med-' + idx);
+          var timeEl = document.getElementById('fd-time-' + idx);
+          var nowStr = getNowTime();
+
+          // Click animation
+          btn.classList.add('clicked');
+          await fdSleep(200);
+          btn.classList.remove('clicked');
+          await fdSleep(150);
+
+          // Mark done on left
+          card.classList.add('done');
+          btn.textContent = '완료 ✔';
+          btn.classList.add('completed');
+          timeEl.textContent = '완료 ' + nowStr;
+          timeEl.style.display = 'block';
+
+          // Delay then sync to right
+          var syncStart = performance.now();
+          var delay = 300 + Math.random() * 400;
+          await fdSleep(delay);
+
+          // Toast
+          var toast = document.getElementById('fd-toast');
+          toast.textContent = TOAST_MSGS[idx];
+          toast.classList.add('show');
+
+          // Sync right card
+          var rcard = document.getElementById('fd-rmed-' + idx);
+          var rstatus = document.getElementById('fd-rstatus-' + idx);
+          var rtime = document.getElementById('fd-rtime-' + idx);
+          rcard.classList.add('done');
+          rstatus.textContent = '완료 ✔';
+          rstatus.style.color = '#22c55e';
+          rcard.querySelector('.fd-med-detail').textContent = '복약 완료';
+          rtime.textContent = '완료 ' + nowStr;
+          rtime.style.display = 'block';
+
+          // Hide toast after 2s
+          await fdSleep(2000);
+          toast.classList.remove('show');
+          await fdSleep(400);
+        }
+
+        async function runFamilyDemo() {
+          if (fdRunning) return;
+          fdRunning = true;
+
+          while (fdRunning) {
+            resetAll();
+            await fdSleep(1200);
+
+            for (var i = 0; i < 3; i++) {
+              await completeMed(i);
+              if (i < 2) await fdSleep(2500);
+            }
+
+            await fdSleep(6000);
+          }
+        }
+
+        var familyPage = document.getElementById('family-demo-page');
+        var fdObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !fdRunning) {
+              runFamilyDemo();
+            }
+          });
+        }, { threshold: 0.5 });
+        fdObserver.observe(familyPage);
+      })();
+      </script>
     </div>
 
     <!-- 페이지 9: 데이터 -->
