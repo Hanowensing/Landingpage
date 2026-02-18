@@ -1319,6 +1319,42 @@
       line-height: 1.45;
     }
 
+    /* ===== 모바일 종합 최적화 (max-width: 600px) ===== */
+    @media (max-width: 600px) {
+      /* 1페이지: 위 여백 데스크탑과 동일 유지, UI 절반 잘림 */
+      .page-1 .hero-content { margin-top: 10vh; }
+      .hero h1 { font-size: 1.35rem; margin-bottom: 12px; }
+      .hero .cta { padding: 12px 28px; font-size: 0.92rem; margin-top: 16px; margin-bottom: 8px; }
+      .hero .cta-video { font-size: 0.85rem; margin-bottom: 16px; }
+      .phone-mockup { max-width: 240px; }
+      .phone-mockup .hero-ui-img { max-height: none; }
+
+      /* 3페이지 Solution: 위 여백 + 텍스트 2줄 + 전체 여백 */
+      .problem-page-section { padding: clamp(20px, 4vh, 36px) 16px clamp(16px, 3vh, 24px); }
+      .problem-page-label { margin-bottom: clamp(12px, 2.5vh, 20px); padding: 6px 16px; font-size: 0.78rem; }
+      .problem-page-answer { font-size: 0.82rem !important; margin-bottom: clamp(12px, 2vh, 20px) !important; line-height: 1.55; }
+
+      /* 5페이지 다제약물: 여백 줄이기 */
+      .page-3 .problem-page-section { padding: 16px 12px 12px; }
+      .page-3 .problem-page-label { margin-bottom: 10px; }
+
+      /* 6페이지 상호작용: 여백 + 텍스트 */
+      .interaction-images { gap: 10px !important; }
+      .interaction-images > div { max-width: 45% !important; }
+
+      /* 9페이지: 원 3개 가로 병렬 유지, 크기 축소 */
+      .page-5 .data-section .data-section-inner { margin-top: -4vh; }
+      .page-5 .data-section .data-heading { font-size: 1.15rem !important; }
+      .page-5 .data-section .data-catchphrase { font-size: 0.82rem; margin-bottom: 16px !important; }
+      .page-5 .data-section .data-circles { gap: 10px; flex-wrap: nowrap; margin-bottom: 16px; }
+      .page-5 .data-section .data-circle { width: 90px; height: 90px; }
+      .page-5 .data-section .data-circle-num { font-size: 1.4rem; }
+      .page-5 .data-section .data-circle-label { font-size: 0.52rem; margin-top: 3px; max-width: 80px; }
+      .page-5 .data-section .data-circle-label-nowrap { white-space: normal; }
+      .page-5 .data-section .data-body { font-size: 0.78rem; }
+      .page-5 .data-section .data-source { font-size: 0.65rem !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -2015,7 +2051,8 @@
         /* 모바일 최적화 */
         @media (max-width: 600px) {
           #family-demo-page .fd-top-label { font-size: 0.72rem; padding: 5px 14px; }
-          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 10px !important; }
+          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 8px !important; margin-bottom: 0 !important; }
+          #family-demo-page .fd-top { margin-bottom: 6px !important; }
           #family-demo-page .fd-wrap { gap: 10px; padding: 0 6px; }
           #family-demo-page .fd-col { max-width: 48%; gap: 4px; }
           #family-demo-page .fd-col-title { margin-bottom: 4px !important; }
