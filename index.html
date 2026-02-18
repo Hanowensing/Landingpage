@@ -103,6 +103,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex: 1;
+      min-height: 0;
     }
     .page-2 .problem-page-section,
     .page-3 .problem-page-section,
@@ -513,14 +515,16 @@
       padding: 8px;
       border: 0.5px solid #000;
       overflow: hidden;
+      flex: 1;
+      min-height: 0;
     }
 
     .phone-mockup .hero-ui-img {
       display: block;
       width: 100%;
-      height: auto;
-      max-height: 70vh;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
       border-radius: 24px;
       vertical-align: top;
     }
