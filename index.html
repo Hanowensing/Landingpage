@@ -1338,18 +1338,19 @@
       .page-3 .problem-page-section { padding: 16px 12px 12px; }
       .page-3 .problem-page-label { margin-bottom: 10px; }
 
-      /* 6페이지 상호작용: 세로 중앙 정렬 */
+      /* 6페이지 상호작용: 세로 정 중앙 정렬 */
       .interaction-images { gap: 10px !important; }
       .interaction-images > div { max-width: 45% !important; }
-      .interaction-images img { max-height: 55svh !important; border-radius: 16px !important; }
-      .page:has(.interaction-images) .problem-page-section { padding: 0 12px; justify-content: center; }
-      .page:has(.interaction-images) .problem-page-label { margin-bottom: 8px; }
-      .page:has(.interaction-images) .problem-page-answer { margin-bottom: 8px !important; }
+      .interaction-images img { max-height: 50svh !important; border-radius: 16px !important; }
+      .page:has(.interaction-images) .problem-page-section { padding: 0 12px !important; justify-content: center !important; height: 100%; }
+      .page:has(.interaction-images) .problem-page-label { margin-bottom: 6px; }
+      .page:has(.interaction-images) .problem-page-answer { margin-bottom: 6px !important; }
 
-      /* 9페이지: 원 3개 가로 병렬 유지, 크기 축소 */
-      .page-5 .data-section .data-section-inner { margin-top: -4vh; }
-      .page-5 .data-section .data-heading { font-size: 1.15rem !important; }
-      .page-5 .data-section .data-catchphrase { font-size: 0.82rem; margin-bottom: 16px !important; }
+      /* 9페이지: 원 3개 가로 병렬 유지, 크기 축소, 여백 줄이기 */
+      .page-5 .data-section .data-section-inner { margin-top: -2vh; }
+      .page-5 .data-section .data-heading { font-size: 1.15rem !important; margin-bottom: 8px !important; }
+      .page-5 .data-section .data-catchphrase { font-size: 0.82rem; margin-bottom: 12px !important; }
+      .page-5 .data-section .data-section-inner > p:first-child { margin-bottom: 8px !important; }
       .page-5 .data-section .data-circles { gap: 10px; flex-wrap: nowrap; margin-bottom: 16px; }
       .page-5 .data-section .data-circle { width: 100px; height: 100px; }
       .page-5 .data-section .data-circle-num { font-size: 1.4rem; }
@@ -1386,7 +1387,7 @@
     </div>
 
     <!-- 페이지 2: 복약 비교 자동 데모 -->
-    <div class="page" id="demo-page" style="background: #f0f4ff; border-top: 1px solid rgba(0,0,0,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: clamp(24px, 5vh, 56px);">
+    <div class="page" id="demo-page" style="background: #f0f4ff; border-top: 1px solid rgba(0,0,0,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: clamp(24px, 7vh, 56px);">
       <style>
         #demo-page * { box-sizing: border-box; }
         .demo-wrap {
@@ -1655,8 +1656,7 @@
         <!-- 좌측: 수기 입력 -->
         <div class="demo-col">
           <div style="text-align:center;margin-bottom:clamp(6px,0.8vh,10px);">
-            <span style="font-size:clamp(1.1rem,2.8vw,1.45rem);font-weight:800;color:#4b5563;letter-spacing:-0.02em;">타 서비스</span>
-            <span style="font-size:clamp(0.82rem,1.8vw,0.95rem);font-weight:600;color:#9ca3af;display:block;margin-top:4px;">(수기입력)</span>
+            <span style="font-size:clamp(1rem,2.5vw,1.35rem);font-weight:800;color:#4b5563;letter-spacing:-0.02em;">타 서비스</span><span style="font-size:clamp(0.78rem,1.6vw,0.9rem);font-weight:600;color:#9ca3af;margin-left:4px;">(수기입력)</span>
           </div>
           <div class="demo-phone" id="demo-left" style="position: relative;">
             <div class="demo-phone-header">
@@ -1687,8 +1687,7 @@
         <!-- 우측: 처방 연동 -->
         <div class="demo-col">
           <div style="text-align:center;margin-bottom:clamp(6px,0.8vh,10px);">
-            <span style="font-size:clamp(1.1rem,2.8vw,1.45rem);font-weight:800;color:#423FEB;letter-spacing:-0.02em;">MEDIGUARD</span>
-            <span style="font-size:clamp(0.82rem,1.8vw,0.95rem);font-weight:600;color:#6b69f0;display:block;margin-top:4px;">(PHR API 자동 연동)</span>
+            <span style="font-size:clamp(1rem,2.5vw,1.35rem);font-weight:800;color:#423FEB;letter-spacing:-0.02em;">MEDIGUARD</span><span style="font-size:clamp(0.78rem,1.6vw,0.9rem);font-weight:600;color:#6b69f0;margin-left:4px;">(PHR API 자동 연동)</span>
           </div>
           <div class="demo-phone" id="demo-right" style="position: relative;">
             <div class="demo-phone-header">
@@ -1704,7 +1703,7 @@
           <div class="demo-timer" id="demo-right-timer"></div>
         </div>
       </div>
-      <p style="margin:clamp(8px,1.2vh,16px) 0 clamp(40px,7.5vh,80px);font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:#1f2937;text-align:center;letter-spacing:-0.02em;line-height:1.4;">다른 서비스 대비 입력 시간 <span style="color:#423FEB;">96% 단축</span></p>
+      <p style="margin:clamp(8px,1.2vh,16px) 0 clamp(20px,4vh,48px);font-size:clamp(1rem,2.8vw,1.35rem);font-weight:800;color:#1f2937;text-align:center;letter-spacing:-0.02em;line-height:1.4;">다른 서비스 대비 입력 시간 <span style="color:#423FEB;">96% 단축</span></p>
 
       <script>
       (function() {
@@ -2059,12 +2058,13 @@
 
         /* 모바일 최적화 */
         @media (max-width: 600px) {
+          #family-demo-page { padding-top: 12px !important; }
           #family-demo-page .fd-top-label { font-size: 0.72rem; padding: 5px 14px; }
-          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 8px !important; margin-bottom: 0 !important; }
-          #family-demo-page .fd-top { margin-bottom: 6px !important; }
+          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 4px !important; margin-bottom: 0 !important; }
+          #family-demo-page .fd-top { margin-bottom: 2px !important; }
           #family-demo-page .fd-wrap { gap: 10px; padding: 0 6px; }
-          #family-demo-page .fd-col { max-width: 48%; gap: 4px; }
-          #family-demo-page .fd-col-title { margin-bottom: 4px !important; }
+          #family-demo-page .fd-col { max-width: 48%; gap: 3px; }
+          #family-demo-page .fd-col-title { margin-bottom: 2px !important; }
           #family-demo-page .fd-col-title-main { font-size: 0.82rem !important; }
           #family-demo-page .fd-phone { max-width: 100%; border-radius: 20px; height: clamp(300px, 55svh, 420px); }
           #family-demo-page .fd-phone-header { padding: 8px 10px; font-size: 0.72rem; border-radius: 18px 18px 0 0; }
@@ -2076,6 +2076,7 @@
           #family-demo-page .fd-done-btn { padding: 5px 8px; font-size: 0.58rem; border-radius: 7px; }
           #family-demo-page .fd-toast { padding: 6px 8px; font-size: 0.56rem; border-radius: 8px; }
           #family-demo-page [id^="fd-rstatus"] { font-size: 0.56rem !important; }
+          #family-demo-page .fd-bottom { margin: 4px 0 8px !important; }
         }
       </style>
 
@@ -2289,7 +2290,7 @@
         <p style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; color: var(--concept); letter-spacing: -0.03em; line-height: 1.25; margin: 0 0 clamp(14px, 2.5vh, 24px); text-transform: uppercase;">MEDIGUARD</p>
 
         <h2 class="data-heading" style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; margin: 0 0 clamp(14px, 2.5vh, 24px); letter-spacing: -0.03em;">데이터로 복약을 관리합니다</h2>
-        <p class="data-catchphrase" style="font-size: clamp(0.9rem, 2.2vw, 1.05rem); margin-bottom: clamp(24px, 4vh, 40px);">신뢰할 수 있는 데이터 기반으로, 더 안전한 복약 경험을 제공합니다</p>
+        <p class="data-catchphrase" style="font-size: clamp(0.9rem, 2.2vw, 1.05rem); margin-bottom: clamp(24px, 4vh, 40px);">신뢰할 수 있는 데이터 기반으로,<br />더 안전한 복약 경험을 제공합니다</p>
 
         <!-- 데이터 서클 -->
         <div class="data-circles">
