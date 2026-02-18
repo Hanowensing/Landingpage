@@ -57,11 +57,11 @@
       position: relative;
       width: 100%;
       min-height: 100vh;
-      min-height: 100dvh;
+      min-height: 100svh;
       height: 100vh;
-      height: 100dvh;
+      height: 100svh;
       max-height: 100vh;
-      max-height: 100dvh;
+      max-height: 100svh;
       box-sizing: border-box;
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -1580,6 +1580,30 @@
           pointer-events: none;
         }
         .demo-pause-indicator.show { display: block; }
+
+        /* 모바일 최적화 */
+        @media (max-width: 600px) {
+          .demo-wrap { gap: 10px; padding: 0 6px; }
+          .demo-col { max-width: 48%; gap: 4px; }
+          .demo-col > div[style*="text-align:center"] { margin-bottom: 4px !important; }
+          .demo-col > div[style*="text-align:center"] span:first-child { font-size: 0.82rem !important; }
+          .demo-col > div[style*="text-align:center"] span:last-child { font-size: 0.68rem !important; }
+          .demo-phone { max-width: 100%; border-radius: 20px; height: clamp(300px, 55svh, 420px); }
+          .demo-phone-header { padding: 8px 10px; font-size: 0.72rem; border-radius: 18px 18px 0 0; }
+          .demo-phone-header .demo-label { font-size: 0.55rem; padding: 2px 7px; }
+          .demo-phone-body { padding: 6px 8px; gap: 5px; }
+          .demo-med-item { padding: 6px 8px; border-radius: 8px; }
+          .demo-med-name { font-size: 0.68rem !important; }
+          .demo-med-detail { font-size: 0.56rem !important; }
+          .demo-btn { padding: 7px 10px !important; font-size: 0.65rem !important; border-radius: 8px !important; }
+          .demo-timer { font-size: 0.75rem; padding: 5px 10px; border-radius: 8px; }
+          .demo-sheet { padding: 8px 10px 6px; border-radius: 14px 14px 0 0; }
+          .demo-sheet-title { font-size: 0.68rem; margin-bottom: 4px; }
+          .demo-sheet-field { margin-bottom: 3px; }
+          .demo-sheet-field label { font-size: 0.52rem; }
+          .demo-sheet-field .demo-input { padding: 4px 6px; font-size: 0.58rem; border-radius: 6px; }
+          .demo-sheet-save { padding: 5px; font-size: 0.6rem; border-radius: 8px; margin-top: 3px; }
+        }
       </style>
 
       <div class="demo-wrap">
@@ -1986,6 +2010,26 @@
         #family-demo-page .fd-bottom-text {
           font-size: clamp(1.1rem,3vw,1.45rem); font-weight: 800;
           color: #1f2937; letter-spacing: -0.02em;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 600px) {
+          #family-demo-page .fd-top-label { font-size: 0.72rem; padding: 5px 14px; }
+          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 10px !important; }
+          #family-demo-page .fd-wrap { gap: 10px; padding: 0 6px; }
+          #family-demo-page .fd-col { max-width: 48%; gap: 4px; }
+          #family-demo-page .fd-col-title { margin-bottom: 4px !important; }
+          #family-demo-page .fd-col-title-main { font-size: 0.82rem !important; }
+          #family-demo-page .fd-phone { max-width: 100%; border-radius: 20px; height: clamp(300px, 55svh, 420px); }
+          #family-demo-page .fd-phone-header { padding: 8px 10px; font-size: 0.72rem; border-radius: 18px 18px 0 0; }
+          #family-demo-page .fd-phone-body { padding: 6px 8px; gap: 6px; }
+          #family-demo-page .fd-med-card { padding: 8px 8px; border-radius: 10px; gap: 6px; }
+          #family-demo-page .fd-med-name { font-size: 0.68rem !important; }
+          #family-demo-page .fd-med-detail { font-size: 0.56rem !important; }
+          #family-demo-page .fd-med-time { font-size: 0.52rem !important; }
+          #family-demo-page .fd-done-btn { padding: 5px 8px; font-size: 0.58rem; border-radius: 7px; }
+          #family-demo-page .fd-toast { padding: 6px 8px; font-size: 0.56rem; border-radius: 8px; }
+          #family-demo-page [id^="fd-rstatus"] { font-size: 0.56rem !important; }
         }
       </style>
 
