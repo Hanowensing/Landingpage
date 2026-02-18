@@ -309,8 +309,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: clamp(140px, 28vw, 220px);
-      height: clamp(140px, 28vw, 220px);
+      width: clamp(100px, 28vw, 220px);
+      height: clamp(100px, 28vw, 220px);
       border-radius: 50%;
       background: var(--concept);
       border: none;
@@ -1319,88 +1319,6 @@
       line-height: 1.45;
     }
 
-    /* ============================
-       모바일 최적화 (iPhone 16 기준: 390×844)
-       ============================ */
-    @media (max-width: 430px) {
-      /* 헤더 */
-      .header-nav { gap: 12px; }
-      .header-nav a { font-size: 0.8rem; }
-
-      /* 1페이지 히어로 */
-      .page-1 .hero-content { margin-top: 5vh; }
-      .hero h1 {
-        font-size: 1.45rem;
-        margin-bottom: 12px;
-        line-height: 1.35;
-      }
-      .hero .cta {
-        display: block;
-        width: min(88vw, 320px);
-        margin: 16px auto 8px;
-        padding: 13px 20px;
-        text-align: center;
-      }
-      .hero .cta-video { margin-bottom: 16px; font-size: 0.85rem; }
-      .phone-mockup { max-width: 210px; }
-      .phone-mockup .hero-ui-img { max-height: 46vh; }
-
-      /* 문제/솔루션 페이지 공통 */
-      .problem-page-section {
-        padding: 18px 16px 12px;
-      }
-      .problem-page-label {
-        margin-bottom: 12px;
-        font-size: 0.72rem;
-        padding: 6px 14px;
-      }
-      .problem-page-answer {
-        font-size: 0.88rem !important;
-        margin-bottom: 12px !important;
-        line-height: 1.55;
-      }
-
-      /* 5-1페이지 상호작용 이미지: 가로 → 세로 스택 */
-      .interaction-images {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 14px !important;
-      }
-      .interaction-images > div {
-        max-width: 200px !important;
-      }
-      .interaction-images img {
-        max-height: 38vh !important;
-      }
-
-      /* 8페이지 가족 복약 공유 이미지 */
-      .page-8-ui-img {
-        max-width: 200px !important;
-        max-height: 52vh !important;
-      }
-
-      /* 9페이지 데이터 서클 - 모바일 크기 축소 */
-      .page-5 .data-section .data-section-inner { margin-top: -1vh; }
-      .page-5 .data-section .data-heading { font-size: 1.15rem !important; margin-bottom: 6px !important; }
-      .page-5 .data-section .data-catchphrase { font-size: 0.8rem !important; margin-bottom: 12px !important; }
-      .page-5 .data-section .data-circles { gap: 8px; margin-bottom: 12px; }
-      .page-5 .data-section .data-circle {
-        width: 108px !important;
-        height: 108px !important;
-      }
-      .page-5 .data-section .data-circle-num { font-size: 1.3rem !important; }
-      .page-5 .data-section .data-circle-label { font-size: 0.57rem !important; }
-      .page-5 .data-section .data-body { font-size: 0.8rem !important; }
-      .page-5 .data-section .data-source { font-size: 0.68rem !important; }
-
-      /* 10페이지 베타 체크리스트: 가로 → 세로 */
-      .beta-checklist {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 10px !important;
-      }
-      .beta-checklist span { font-size: 0.88rem !important; }
-    }
   </style>
 </head>
 <body>
