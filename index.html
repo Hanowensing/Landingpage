@@ -1318,6 +1318,89 @@
       color: var(--gray-400);
       line-height: 1.45;
     }
+
+    /* ============================
+       모바일 최적화 (iPhone 16 기준: 390×844)
+       ============================ */
+    @media (max-width: 430px) {
+      /* 헤더 */
+      .header-nav { gap: 12px; }
+      .header-nav a { font-size: 0.8rem; }
+
+      /* 1페이지 히어로 */
+      .page-1 .hero-content { margin-top: 5vh; }
+      .hero h1 {
+        font-size: 1.45rem;
+        margin-bottom: 12px;
+        line-height: 1.35;
+      }
+      .hero .cta {
+        display: block;
+        width: min(88vw, 320px);
+        margin: 16px auto 8px;
+        padding: 13px 20px;
+        text-align: center;
+      }
+      .hero .cta-video { margin-bottom: 16px; font-size: 0.85rem; }
+      .phone-mockup { max-width: 210px; }
+      .phone-mockup .hero-ui-img { max-height: 46vh; }
+
+      /* 문제/솔루션 페이지 공통 */
+      .problem-page-section {
+        padding: 18px 16px 12px;
+      }
+      .problem-page-label {
+        margin-bottom: 12px;
+        font-size: 0.72rem;
+        padding: 6px 14px;
+      }
+      .problem-page-answer {
+        font-size: 0.88rem !important;
+        margin-bottom: 12px !important;
+        line-height: 1.55;
+      }
+
+      /* 5-1페이지 상호작용 이미지: 가로 → 세로 스택 */
+      .interaction-images {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 14px !important;
+      }
+      .interaction-images > div {
+        max-width: 200px !important;
+      }
+      .interaction-images img {
+        max-height: 38vh !important;
+      }
+
+      /* 8페이지 가족 복약 공유 이미지 */
+      .page-8-ui-img {
+        max-width: 200px !important;
+        max-height: 52vh !important;
+      }
+
+      /* 9페이지 데이터 서클 - 모바일 크기 축소 */
+      .page-5 .data-section .data-section-inner { margin-top: -1vh; }
+      .page-5 .data-section .data-heading { font-size: 1.15rem !important; margin-bottom: 6px !important; }
+      .page-5 .data-section .data-catchphrase { font-size: 0.8rem !important; margin-bottom: 12px !important; }
+      .page-5 .data-section .data-circles { gap: 8px; margin-bottom: 12px; }
+      .page-5 .data-section .data-circle {
+        width: 108px !important;
+        height: 108px !important;
+      }
+      .page-5 .data-section .data-circle-num { font-size: 1.3rem !important; }
+      .page-5 .data-section .data-circle-label { font-size: 0.57rem !important; }
+      .page-5 .data-section .data-body { font-size: 0.8rem !important; }
+      .page-5 .data-section .data-source { font-size: 0.68rem !important; }
+
+      /* 10페이지 베타 체크리스트: 가로 → 세로 */
+      .beta-checklist {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+      .beta-checklist span { font-size: 0.88rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -1377,8 +1460,8 @@
       <h2 class="problem-page-label">Problem</h2>
       <h3 style="font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700; color: var(--gray-900); line-height: 1.4; margin: 0 0 clamp(20px, 4vh, 36px); letter-spacing: -0.02em; text-align: center;">다제약물 복용자는<br />조용히 쌓이는 위험 속에 놓여 있습니다.</h3>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 20px); width: 100%; max-width: min(92vw, 100%); margin: 0 auto clamp(10px, 2vh, 16px);">
-        <img src="group 2.png" alt="병원 입원 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
-        <img src="group 3.png" alt="사망 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
+        <img src="Group 2.png" alt="병원 입원 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
+        <img src="Group 3.png" alt="사망 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
       </div>
       <p style="font-size: clamp(0.65rem, 1.4vw, 0.78rem); color: var(--gray-400); margin: 0 0 clamp(10px, 1.5vh, 16px); max-width: min(560px, 90vw);">다제약물: 복수의 의약품을 동시에 복용하는 것, 혹은 지나치게 많은 수의 약제를 복용하는 것</p>
       <div style="max-width: min(200px, 40vw); width: 100%; margin: 0 auto;">
@@ -1392,7 +1475,7 @@
     <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <h2 class="problem-page-label">Solution</h2>
       <p class="problem-page-answer" style="font-size: clamp(1rem, 2.5vh, 1.2rem); margin-bottom: clamp(16px, 3vh, 28px);">메디가드는 100만건의 약물 상호작용 데이터를 기반으로<br /><strong>환자의 약물 상호작용 리스크를 AI 탐지</strong>합니다</p>
-      <div style="display: flex; flex-direction: row; gap: clamp(16px, 3vw, 40px); justify-content: center; align-items: flex-start;">
+      <div class="interaction-images" style="display: flex; flex-direction: row; gap: clamp(16px, 3vw, 40px); justify-content: center; align-items: flex-start;">
         <div style="max-width: 280px; width: 100%;">
           <img src="상호작용.png" alt="상호작용" style="display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 24px;" />
         </div>
@@ -1473,7 +1556,7 @@
       <p style="font-size: clamp(0.72rem, 1.6vw, 0.82rem); color: var(--gray-400); margin: 0 0 clamp(24px, 4.5vh, 44px);">이메일을 남겨주시면 베타테스트 초대장을 보내드립니다</p>
 
       <!-- 체크리스트 -->
-      <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap;">
+      <div class="beta-checklist" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap;">
         <span style="display: flex; align-items: center; gap: 8px; font-size: clamp(0.85rem, 2vw, 0.95rem); color: var(--gray-600); font-weight: 500;">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#423FEB" fill-opacity="0.12"/><path d="M5 9.5l3 3 5-6" stroke="#423FEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           복약 정보 자동 연동
