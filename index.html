@@ -31,24 +31,31 @@
     }
 
     html {
+      overflow-x: hidden !important;
       height: 100%;
+      width: 100%;
+      overflow-y: scroll;
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
       scroll-padding-top: var(--header-height);
     }
 
     body {
+      overflow-x: hidden !important;
       font-family: 'Noto Sans KR', -apple-system, sans-serif;
       color: var(--gray-900);
       background: #ffffff;
       line-height: 1.6;
-      overflow-x: hidden;
       overflow-y: auto;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     /* Page containers - 한 화면에 한 페이지만 (뷰포트 고정, 적응형) */
     .page {
       position: relative;
+      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
       height: 100vh;
@@ -60,11 +67,12 @@
       scroll-snap-stop: always;
       display: flex;
       flex-direction: column;
+      align-items: center;
       overflow: hidden;
     }
     /* 전체 배경 통일, 구분선 */
     .page-1 { background: #f0f4ff; }
-    .page-2 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
+    .page-2 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); background-image: url('Frame 8 (2).png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
     .page-3 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
     .page-4 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
     .page-5 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
@@ -72,6 +80,11 @@
     .page-7 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
     .page-1 {
       padding-top: 0;
+    }
+    main {
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: visible;
     }
     .page-1 .hero {
       flex: 1;
@@ -96,6 +109,7 @@
     .page-4 .problem-page-section {
       flex: 1;
       min-height: 0;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -103,6 +117,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
     }
     .page-6 .problem-solution-section {
       flex: 1;
@@ -756,7 +771,7 @@
       line-height: 1.35;
     }
     .problem-page-answer {
-      margin: 0 0 clamp(10px, 2vh, 20px);
+      margin: 0 0 clamp(24px, 5vh, 40px);
       max-width: min(720px, 94vw);
       font-size: clamp(0.8rem, 2vh, 1.05rem);
       color: var(--gray-600);
@@ -780,11 +795,12 @@
     .problem-page-ui {
       width: 100%;
       max-width: min(260px, 70vw);
-      margin: 0 auto;
+      margin: clamp(12px, 2vh, 20px) auto 0;
       flex-shrink: 0;
       min-height: 0;
-      padding: clamp(9px, 1.75vh, 16px) 0;
+      padding: 0;
       overflow: visible;
+      background: transparent;
     }
     .problem-page-ui img {
       display: block;
@@ -794,12 +810,55 @@
       object-fit: contain;
       object-position: center;
       border-radius: 20px;
-      box-shadow: 0 16px 40px -12px rgba(0,0,0,0.12);
+    }
+    .problem-page-ui div {
+      background: transparent;
+      padding: 0;
+    }
+    .page-2 .problem-page-label {
+      margin: 0 0 clamp(12px, 2vh, 20px);
+    }
+    .page-2 .problem-page-quote {
+      margin: 0 0 clamp(8px, 1.5vh, 12px);
+    }
+    .page-2 .problem-page-answer {
+      margin: 0;
+    }
+    .page-2 .problem-page-ui {
+      display: flex;
+      flex-direction: row;
+      gap: clamp(20px, 3vw, 30px);
+      max-width: none;
+      width: 100%;
+      justify-content: center;
+      margin: clamp(16px, 3vh, 28px) auto 0;
+    }
+    .page-2 .problem-page-ui > div {
+      width: clamp(280px, 30vw, 380px);
+      flex: 0 0 auto;
+    }
+    /* page-3 상호작용 이미지 병렬 레이아웃 */
+    .page-3 .problem-page-ui {
+      max-width: min(1200px, 97vw);
+      display: flex;
+      gap: clamp(20px, 4vw, 40px);
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      margin: clamp(16px, 3vh, 28px) auto 0;
+      overflow-x: auto;
+    }
+    .page-3 .problem-page-ui img {
+      flex: 1 1 auto;
+      min-width: 200px;
+      max-width: 400px;
+      background: none;
+      height: auto;
     }
     .problem-page-after-ui {
-      margin-top: clamp(14px, 2.5vh, 22px);
+      margin-top: clamp(32px, 6vh, 52px);
       max-width: min(720px, 94vw);
-      font-size: clamp(0.85rem, 2vh, 1rem);
+      font-size: clamp(1rem, 2.5vh, 1.2rem);
       color: var(--gray-600);
       line-height: 1.55;
     }
@@ -816,7 +875,7 @@
       .problem-page-answer { margin-bottom: clamp(5px, 1vh, 10px); font-size: 0.75rem; }
       .problem-page-ui { padding: clamp(4px, 0.75vh, 8px) 0; }
       .problem-page-ui img { max-height: min(28vh, 200px); }
-      .problem-page-after-ui { margin-top: clamp(8px, 1.5vh, 12px); font-size: 0.78rem; }
+      .problem-page-after-ui { margin-top: clamp(16px, 3vh, 24px); font-size: 0.78rem; }
     }
     @media (max-height: 580px) {
       .problem-page-section { padding: clamp(8px, 1vh, 16px) clamp(10px, 2vw, 20px) clamp(6px, 1vh, 12px) clamp(10px, 2vw, 20px); }
@@ -825,7 +884,7 @@
       .problem-page-answer { margin-bottom: 3px; font-size: 0.7rem; }
       .problem-page-ui { padding: 2px 0; }
       .problem-page-ui img { max-height: min(22vh, 160px); }
-      .problem-page-after-ui { margin-top: 4px; font-size: 0.72rem; }
+      .problem-page-after-ui { margin-top: 8px; font-size: 0.72rem; }
     }
     @media (max-height: 480px) {
       .problem-page-section { padding: clamp(4px, 0.5vh, 8px) clamp(8px, 2vw, 16px) clamp(4px, 1vh, 8px) clamp(8px, 2vw, 16px); }
@@ -834,7 +893,7 @@
       .problem-page-answer { margin-bottom: 2px; font-size: 0.65rem; }
       .problem-page-ui { padding: 1px 0; }
       .problem-page-ui img { max-height: min(18vh, 120px); }
-      .problem-page-after-ui { margin-top: 3px; font-size: 0.65rem; }
+      .problem-page-after-ui { margin-top: 6px; font-size: 0.65rem; }
     }
 
     @media (max-height: 700px) {
@@ -1266,7 +1325,7 @@
     <span class="logo">MEDIGUARD</span>
     <nav class="header-nav">
       <a href="#">서비스 소개하기</a>
-      <a href="#">문의하기</a>
+      <a href="#" onclick="openContactModal(); return false;">문의하기</a>
     </nav>
   </header>
 
@@ -1276,8 +1335,8 @@
     <section class="hero">
       <div class="hero-content">
         <h1>약부터 영양제까지,<br />복용의 모든 순간을 안전하게</h1>
-        <a href="#report" class="cta">베타테스트 신청하기</a>
-        <a href="#report" class="cta-video">서비스 영상 보기</a>
+        <a href="#last-page" class="cta">베타테스트 신청하기</a>
+        <a href="https://www.instagram.com/_mediguard" target="_blank" class="cta-video">메디가드 인스타 방문하기</a>
         <div class="phone-mockup">
           <img src="page1_ui.png" alt="메디가드 앱 UI" class="hero-ui-img" />
         </div>
@@ -1285,51 +1344,98 @@
     </section>
     </div>
 
+    <!-- 페이지 2: 먹는 약이 너무 많아 -->
+    <div class="page page-2-new" style="background-image: url('2페이지.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(100, 100, 100, 0.35); backdrop-filter: blur(4px);"></div>
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0; height: 100%; width: 100%; position: relative; z-index: 1;">
+      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0 0 clamp(16px, 3vh, 28px); line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">먹는 약이 너무 많아 매번 복용을 깜빡하셨나요?</p>
+      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">복약 알람 앱을 사용하려니 약을 일일히 입력하기 귀찮으셨나요?</p>
+    </section>
+    </div>
+
+    <!-- 페이지 3: Solution -->
+    <div class="page" style="background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14);">
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h2 class="problem-page-label">Solution</h2>
+      <p class="problem-page-answer" style="font-size: clamp(1rem, 2.5vh, 1.2rem); margin-bottom: clamp(16px, 3vh, 28px);">메디가드는 보건복지부의 PHR API를 기반으로<br />본인인증 1번이면 <strong>3년의 복약 정보를 자동으로 연동</strong>합니다</p>
+      <div style="max-width: 280px; width: 100%; margin: 0 auto;">
+        <img src="phrapi.png" alt="PHR API 연동 설명" style="display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 24px;" />
+      </div>
+    </section>
+    </div>
+
+    <!-- 페이지 4: 내가 먹고 있는 약들 -->
     <div class="page page-2">
-    <section class="problem-page-section">
-      <h2 class="problem-page-label">Problem</h2>
-      <p class="problem-page-quote">"약, 그냥 시간 맞춰 먹기만 하면 되는 걸까요?"</p>
-      <p class="problem-page-answer"><span class="answer-risk">안 됩니다. 약물 정보 없이 복용할 경우 <span class="answer-risk-red">부작용·입원 위험이 약 50% 증가합니다.</span></span></p>
-      <div class="problem-page-ui">
-        <img src="page1_ui.png" alt="메디가드 앱 UI - 약 정보 확인" />
-      </div>
-      <p class="problem-page-after-ui">메디가드는 복용 중인 <strong>약의 정보·주의사항</strong>을 앱에서 한눈에 확인할 수 있게 해요.<br />알람만 맞추는 게 아니라, 어떤 약인지·먹을 때 주의할 점은 무엇인지 바로 볼 수 있습니다.</p>
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0;">
+      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">내가 먹고 있는 약들, 같이 먹어도 안전한걸까요?</p>
     </section>
     </div>
 
+    <!-- 페이지 5: 다제약물 위험 -->
     <div class="page page-3">
-    <section class="problem-page-section">
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
       <h2 class="problem-page-label">Problem</h2>
-      <p class="problem-page-quote">"내가 먹고 있는 약들, 다 같이 먹어도 되는 걸까요?"</p>
-      <p class="problem-page-answer"><span class="answer-risk">안 됩니다. 5개 이상 복용 시 약물 상호작용 위험이 약 <strong>80% 이상 증가하며,</strong><br /><span class="answer-risk-red">사망 위험이 4배 이상, 입원 비율이 2배 이상 높아집니다.</span></span></p>
-      <div class="problem-page-ui">
-        <img src="page1_ui.png" alt="메디가드 앱 UI - 상호작용 확인" />
+      <h3 style="font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 700; color: var(--gray-900); line-height: 1.4; margin: 0 0 clamp(20px, 4vh, 36px); letter-spacing: -0.02em; text-align: center;">다제약물 복용자는<br />조용히 쌓이는 위험 속에 놓여 있습니다.</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 20px); width: 100%; max-width: min(92vw, 100%); margin: 0 auto clamp(10px, 2vh, 16px);">
+        <img src="group 2.png" alt="병원 입원 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
+        <img src="group 3.png" alt="사망 위험 차트" style="width: 100%; height: auto; object-fit: contain;" />
       </div>
-      <p class="problem-page-after-ui">메디가드는 여러 병원에서 받은 <strong>처방을 한 곳에 모아</strong> 관리하고, <strong>약물 상호작용 위험</strong>을 분석해 알려줍니다.<br />함께 먹으면 안 되는 조합이 있으면 바로 확인할 수 있어요.</p>
+      <p style="font-size: clamp(0.65rem, 1.4vw, 0.78rem); color: var(--gray-400); margin: 0 0 clamp(10px, 1.5vh, 16px); max-width: min(560px, 90vw);">다제약물: 복수의 의약품을 동시에 복용하는 것, 혹은 지나치게 많은 수의 약제를 복용하는 것</p>
+      <div style="max-width: min(200px, 40vw); width: 100%; margin: 0 auto;">
+        <img src="dotdot.png" alt="" style="display: block; width: 100%; height: auto; max-height: 60px; object-fit: contain;" />
+      </div>
     </section>
     </div>
 
-    <div class="page page-4">
-    <section class="problem-page-section">
-      <h2 class="problem-page-label">Problem</h2>
-      <p class="problem-page-quote">"부모님 약이 늘 걱정인데, 매번 찾아갈 수도 없어요."</p>
-      <p class="problem-page-answer"><span class="answer-risk">65세 이상 독거·부부 가구의 약 <strong>83%가 복약을 스스로 관리</strong>하지만,<br />보호자의 도움 없이 체계적인 복약 관리가 어려워 <span class="answer-risk-red">재입원률이 47%에 달합니다.</span></span></p>
-      <div class="problem-page-ui">
-        <img src="page1_ui.png" alt="메디가드 앱 UI - 가족 복약 공유" />
+    <!-- 페이지 5-1: 상호작용 이미지 -->
+    <div class="page" style="background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14);">
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h2 class="problem-page-label">Solution</h2>
+      <p class="problem-page-answer" style="font-size: clamp(1rem, 2.5vh, 1.2rem); margin-bottom: clamp(16px, 3vh, 28px);">메디가드는 100만건의 약물 상호작용 데이터를 기반으로<br /><strong>환자의 약물 상호작용 리스크를 AI 탐지</strong>합니다</p>
+      <div style="display: flex; flex-direction: row; gap: clamp(16px, 3vw, 40px); justify-content: center; align-items: flex-start;">
+        <div style="max-width: 280px; width: 100%;">
+          <img src="상호작용.png" alt="상호작용" style="display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 24px;" />
+        </div>
+        <div style="max-width: 280px; width: 100%;">
+          <img src="상호작용_한국어.png" alt="상호작용 한국어" style="display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 24px;" />
+        </div>
       </div>
-      <p class="problem-page-after-ui">메디가드는 <strong>가족과 복약 현황을 공유</strong>할 수 있어요.<br />떨어져 있어도 부모님이 오늘 약을 드셨는지, 어떤 약을 쓰고 계신지 앱으로 실시간 확인할 수 있습니다.</p>
     </section>
     </div>
 
+    <div class="page page-4" style="background-image: url('할머니.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(100, 100, 100, 0.35); backdrop-filter: blur(4px);"></div>
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0; height: 100%; width: 100%; position: relative; z-index: 1;">
+      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0 0 clamp(16px, 3vh, 28px); line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">부모님 약이 늘 걱정인데 매번 찾아가기 힘드셨나요?</p>
+      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">기존 복약 앱들은 어르신들이 사용하기 어려우셨나요?</p>
+    </section>
+    </div>
+
+    <!-- 페이지 8: 가족 복약 공유 Solution -->
+    <div class="page" style="background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14);">
+    <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h2 class="problem-page-label">Solution</h2>
+      <p class="problem-page-answer" style="font-size: clamp(1rem, 2.5vh, 1.2rem); margin-bottom: clamp(4px, 1vh, 10px);">메디가드는 <strong>가족과 복약 현황을 공유</strong>할 수 있어요</p>
+      <p style="font-size: clamp(0.85rem, 2vh, 1rem); color: var(--gray-600); margin: 0 0 clamp(20px, 3.5vh, 32px); line-height: 1.65; text-align: center; max-width: min(480px, 90vw);">떨어져 있어도 부모님이 오늘 약을 드셨는지,<br />어떤 약을 쓰고 계신지 앱으로 실시간 확인할 수 있습니다</p>
+      <img src="page1_ui.png" alt="메디가드 앱 UI - 가족 복약 공유" style="display: block; width: auto; height: auto; max-width: 280px; max-height: 63vh; object-fit: contain; border-radius: 32px;" />
+    </section>
+    </div>
+
+    <!-- 페이지 9: 데이터 -->
     <div class="page page-5">
     <section class="data-section">
       <div class="data-section-inner">
-        <h2 class="data-heading">데이터로 복약을 관리합니다</h2>
-        <p class="data-catchphrase">신뢰할 수 있는 데이터로, 더 안전한 복약 관리</p>
+        <!-- MEDIGUARD 브랜드 레이블 -->
+        <p style="font-size: clamp(0.85rem, 2vw, 1rem); font-weight: 700; color: var(--concept); letter-spacing: 0.04em; margin: 0 0 clamp(6px, 1vh, 10px); text-transform: uppercase;">MEDIGUARD</p>
+
+        <h2 class="data-heading" style="font-size: clamp(1.4rem, 4.5vw, 2.2rem); margin-bottom: clamp(6px, 1.2vh, 12px);">데이터로 복약을 관리합니다</h2>
+        <p class="data-catchphrase" style="margin-bottom: clamp(24px, 4vh, 40px);">신뢰할 수 있는 데이터 기반으로, 더 안전한 복약 경험을 제공합니다</p>
+
+        <!-- 데이터 서클 -->
         <div class="data-circles">
           <div class="data-circle">
             <span class="data-circle-num">6만</span>
-            <span class="data-circle-label">약물 데이터</span>
+            <span class="data-circle-label">약물<br />데이터</span>
           </div>
           <div class="data-circle">
             <span class="data-circle-num">10만</span>
@@ -1337,71 +1443,53 @@
           </div>
           <div class="data-circle">
             <span class="data-circle-num">100만</span>
-            <span class="data-circle-label data-circle-label-nowrap">약물 상호작용 데이터</span>
+            <span class="data-circle-label data-circle-label-nowrap">약물 상호작용<br />데이터</span>
           </div>
         </div>
-        <p class="data-body">실제 현장에서 사용되는 데이터로 현실성 있는 복약 관리를 실천합니다.</p>
-        <p class="data-source">현재 약 120만건의 복약 데이터와 1000만건의 환자 임상 데이터 확보 및 연동 완료</p>
-        <div class="data-search-btns">
-          <button type="button" class="data-search-btn" id="open-drug-search">약물 검색하기</button>
-          <button type="button" class="data-search-btn" id="open-supplement-search">영양제 검색하기</button>
-        </div>
+
+        <!-- 구분선 -->
+        <div style="width: min(320px, 70vw); height: 1px; background: rgba(66,63,235,0.15); margin: clamp(12px, 2vh, 20px) auto;"></div>
+
+        <p class="data-body">실제 현장에서 사용되는 공공 데이터를 기반으로<br />현실성 있는 복약 관리를 실천합니다</p>
+        <p class="data-source" style="margin-top: clamp(6px, 1vh, 10px); font-size: clamp(0.72rem, 1.5vw, 0.82rem); background: rgba(66,63,235,0.06); display: inline-block; padding: 6px 14px; border-radius: 8px; color: var(--gray-500);">보건복지부 약물 데이터 · 식약처 · 임상 데이터 연동 완료</p>
       </div>
     </section>
     </div>
 
-    <div class="page page-6" id="report">
-    <section class="problem-solution-section">
-      <div class="ps-inner">
-        <h2 class="ps-heading">서비스 작동 영상</h2>
-        <div class="ps-media-group">
-          <div class="ps-media-item">
-            <div class="ps-media">
-              <video class="ps-video" src="intro_video.mp4" controls playsinline></video>
-            </div>
-          </div>
-          <span class="ps-media-arrow" aria-hidden="true">→</span>
-          <div class="ps-media-item">
-            <div class="ps-media">
-              <video class="ps-video" src="intro_video.mp4" controls playsinline></video>
-            </div>
-          </div>
-          <span class="ps-media-arrow" aria-hidden="true">→</span>
-          <div class="ps-media-item">
-            <div class="ps-media">
-              <video class="ps-video" src="intro_video.mp4" controls playsinline></video>
-            </div>
-          </div>
-        </div>
+    <!-- 페이지 10: 베타테스트 신청 -->
+    <div class="page page-5" id="last-page" style="background: #ffffff;">
+    <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; width: 100%; padding: clamp(8px, 2vw, 20px) clamp(16px, 4vw, 32px); text-align: center;">
+      <!-- 제목 -->
+      <p style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; color: var(--concept); letter-spacing: -0.03em; line-height: 1.25; margin: 0 0 clamp(14px, 2.5vh, 24px);">MEDIGUARD</p>
+      <h2 style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; color: var(--gray-900); line-height: 1.25; letter-spacing: -0.03em; margin: 0 0 clamp(14px, 2.5vh, 24px);">베타 테스터를 모집합니다</h2>
+
+      <!-- 설명 -->
+      <p style="font-size: clamp(0.9rem, 2.2vw, 1.05rem); color: var(--gray-600); line-height: 1.7; margin: 0 0 clamp(28px, 5vh, 48px); max-width: min(500px, 90vw);">복약 관리의 새로운 경험을 먼저 만나보세요<br />초기 사용자에게는 특별한 혜택이 제공됩니다</p>
+
+      <!-- CTA 버튼 -->
+      <button onclick="openBetaModal()" style="display: block; width: 100%; max-width: min(480px, 88vw); padding: clamp(16px, 3vh, 22px) 32px; background: var(--concept); color: #ffffff; font-size: clamp(1rem, 2.5vw, 1.15rem); font-weight: 700; border-radius: 16px; border: none; cursor: pointer; font-family: inherit; letter-spacing: -0.01em; margin-bottom: clamp(12px, 2vh, 18px); transition: opacity 0.2s; box-shadow: 0 4px 16px rgba(66,63,235,0.35);">베타테스트 신청하기</button>
+
+      <!-- 안내 문구 -->
+      <p style="font-size: clamp(0.72rem, 1.6vw, 0.82rem); color: var(--gray-400); margin: 0 0 clamp(24px, 4.5vh, 44px);">이메일을 남겨주시면 베타테스트 초대장을 보내드립니다</p>
+
+      <!-- 체크리스트 -->
+      <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap;">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: clamp(0.85rem, 2vw, 0.95rem); color: var(--gray-600); font-weight: 500;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#423FEB" fill-opacity="0.12"/><path d="M5 9.5l3 3 5-6" stroke="#423FEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          복약 정보 자동 연동
+        </span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: clamp(0.85rem, 2vw, 0.95rem); color: var(--gray-600); font-weight: 500;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#423FEB" fill-opacity="0.12"/><path d="M5 9.5l3 3 5-6" stroke="#423FEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          약물 상호작용 AI 탐지
+        </span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: clamp(0.85rem, 2vw, 0.95rem); color: var(--gray-600); font-weight: 500;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#423FEB" fill-opacity="0.12"/><path d="M5 9.5l3 3 5-6" stroke="#423FEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          무료 베타 참여
+        </span>
       </div>
     </section>
     </div>
 
-    <div class="page page-7">
-    <section class="event-section" id="event">
-      <span class="event-badge">★ 선착순 50명 대상 베타 테스터 신청</span>
-      <h2>인스타그램 팔로우 이벤트</h2>
-      <p class="event-desc">이벤트 참여 방법을 안내해 드려요.</p>
-      <div class="event-steps">
-        <div class="event-step">
-          <span class="step-num">STEP 01</span>
-          <p class="step-text">메디가드 공식 인스타그램을 팔로우하고</p>
-          <div class="mock-ui">
-            Instagram @_mediguard<br />
-            <span class="follow-btn">팔로우</span>
-          </div>
-        </div>
-        <div class="event-step">
-          <span class="step-num">STEP 02</span>
-          <p class="step-text">DM으로 <strong>베타 테스터 신청</strong>이라고 보내주세요 ☺️</p>
-          <div class="mock-ui">
-            DM 대화
-            <div class="dm-bubble">베타 테스터 신청</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    </div>
   </main>
 
   <div class="search-modal-overlay" id="drug-search-modal" aria-hidden="true">
@@ -1429,6 +1517,214 @@
       </div>
     </div>
   </div>
+
+  <style>
+    @keyframes envAppear {
+      from { transform: scale(0.72) translateY(24px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+  </style>
+
+  <!-- 베타테스트 신청 모달 (봉투 애니메이션) -->
+  <div id="beta-signup-modal" style="display: none; position: fixed; inset: 0; background: rgba(10,10,24,0.72); z-index: 300; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(6px);">
+
+    <!-- 봉투 + 카드 전체 래퍼 -->
+    <div id="env-wrapper" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+
+      <!-- 초대장 카드 (봉투에서 올라옴) -->
+      <div id="invite-card" style="background: #fff; border-radius: 20px; padding: 30px 26px 26px; width: min(320px, 88vw); box-shadow: 0 24px 64px rgba(0,0,0,0.35); position: relative; z-index: 10; transform: translateY(140px); opacity: 0; pointer-events: none; transition: transform 0.7s cubic-bezier(0.34, 1.15, 0.64, 1), opacity 0.4s ease;">
+
+        <!-- 닫기 버튼 -->
+        <button onclick="closeBetaModal()" style="position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: none; background: #f3f4f6; border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: #6b7280; display: flex; align-items: center; justify-content: center; font-family: inherit; line-height: 1;">×</button>
+
+        <p style="font-size: 0.78rem; font-weight: 700; color: var(--concept); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 4px;">MEDIGUARD</p>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: #1f2937; margin: 0 0 6px; letter-spacing: -0.02em;">베타테스트 신청하기</h3>
+        <p style="font-size: 0.88rem; color: #6b7280; margin: 0 0 22px; line-height: 1.6;">이메일을 남겨주시면<br>베타테스트 초대장을 보내드립니다.</p>
+
+        <div id="beta-form-area">
+          <iframe name="beta-hidden-iframe" style="display:none;" onload="onBetaIframeLoad()"></iframe>
+          <form id="beta-form" action="https://formsubmit.co/hanowen0716@gmail.com" method="POST" target="beta-hidden-iframe" onsubmit="onBetaSubmit(event)">
+            <input type="hidden" name="_subject" value="MEDIGUARD 베타테스트 신청" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="box" />
+            <input type="email" name="email" id="beta-email-input" placeholder="이메일 주소를 입력해주세요" required style="width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: inherit; margin-bottom: 8px; outline: none; transition: border-color 0.2s;" />
+            <p id="beta-email-error" style="display: none; font-size: 0.78rem; color: #dc2626; margin: 0 0 8px;">올바른 이메일 주소를 입력해주세요.</p>
+            <button type="submit" id="beta-submit-btn" style="width: 100%; padding: 13px; background: var(--concept); color: #fff; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(66,63,235,0.3); transition: opacity 0.2s;">신청하기</button>
+          </form>
+        </div>
+
+        <div id="beta-success-area" style="display: none; text-align: center; padding: 8px 0 4px;">
+          <div style="width: 52px; height: 52px; background: rgba(66,63,235,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M6 13.5l5 5 9-9" stroke="#423FEB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p style="font-size: 1.05rem; font-weight: 800; color: #1f2937; margin: 0 0 6px; letter-spacing: -0.02em;">신청이 완료되었습니다!</p>
+          <p style="font-size: 0.88rem; color: #6b7280; margin: 0; line-height: 1.6;">곧 베타테스트 초대장을 보내드릴게요.</p>
+        </div>
+      </div>
+
+      <!-- 봉투 몸체 -->
+      <div style="width: min(360px, 92vw); height: 190px; background: var(--concept); border-radius: 0 0 14px 14px; position: relative; margin-top: -18px; z-index: 5; overflow: hidden;">
+        <!-- 봉투 내부 V접힘 패턴 -->
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.14) 50%, transparent 50%), linear-gradient(225deg, rgba(0,0,0,0.14) 50%, transparent 50%); background-size: 50% 55%; background-position: left bottom, right bottom; background-repeat: no-repeat;"></div>
+        <!-- 봉투 뚜껑 (flap) — 위로 열림 -->
+        <div id="env-flap" style="position: absolute; top: 0; left: 0; right: 0; height: 115px; background: #5452f6; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; transform: perspective(600px) rotateX(0deg); transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); z-index: 6;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openBetaModal() {
+      var modal = document.getElementById('beta-signup-modal');
+      modal.style.display = 'flex';
+
+      // 폼 초기화
+      document.getElementById('beta-email-input').value = '';
+      document.getElementById('beta-form-area').style.display = 'block';
+      document.getElementById('beta-success-area').style.display = 'none';
+      document.getElementById('beta-email-error').style.display = 'none';
+      document.getElementById('beta-email-input').style.borderColor = '#e5e7eb';
+      document.getElementById('beta-submit-btn').textContent = '신청하기';
+      document.getElementById('beta-submit-btn').disabled = false;
+      document.getElementById('beta-submit-btn').style.opacity = '1';
+
+      // 애니메이션 초기화
+      var wrapper = document.getElementById('env-wrapper');
+      var card    = document.getElementById('invite-card');
+      var flap    = document.getElementById('env-flap');
+      wrapper.style.animation = 'none';
+      card.style.transition = 'none';
+      card.style.transform  = 'translateY(140px)';
+      card.style.opacity    = '0';
+      card.style.pointerEvents = 'none';
+      flap.style.transition = 'none';
+      flap.style.transform  = 'perspective(600px) rotateX(0deg)';
+
+      // 봉투 등장
+      setTimeout(function() {
+        wrapper.style.animation = 'envAppear 0.38s cubic-bezier(0.34, 1.4, 0.64, 1) forwards';
+      }, 10);
+
+      // 뚜껑 열기
+      setTimeout(function() {
+        flap.style.transition = 'transform 0.58s cubic-bezier(0.4, 0, 0.2, 1)';
+        flap.style.transform  = 'perspective(600px) rotateX(-172deg)';
+      }, 380);
+
+      // 카드 올라오기
+      setTimeout(function() {
+        card.style.transition    = 'transform 0.7s cubic-bezier(0.34, 1.15, 0.64, 1), opacity 0.4s ease';
+        card.style.transform     = 'translateY(0)';
+        card.style.opacity       = '1';
+        card.style.pointerEvents = 'auto';
+        setTimeout(function() { document.getElementById('beta-email-input').focus(); }, 400);
+      }, 750);
+    }
+
+    function closeBetaModal() {
+      document.getElementById('beta-signup-modal').style.display = 'none';
+    }
+
+    document.getElementById('beta-signup-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeBetaModal();
+    });
+
+    var betaEmailInput = document.getElementById('beta-email-input');
+    betaEmailInput.addEventListener('focus', function() { this.style.borderColor = '#423FEB'; });
+    betaEmailInput.addEventListener('blur',  function() { this.style.borderColor = '#e5e7eb'; });
+
+    var betaSubmitted = false;
+    function onBetaSubmit(e) {
+      var email = document.getElementById('beta-email-input').value.trim();
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        document.getElementById('beta-email-input').style.borderColor = '#dc2626';
+        document.getElementById('beta-email-error').style.display = 'block';
+        return;
+      }
+      document.getElementById('beta-email-error').style.display = 'none';
+      var btn = document.getElementById('beta-submit-btn');
+      btn.textContent = '전송 중...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+      betaSubmitted = true;
+    }
+    function onBetaIframeLoad() {
+      if (!betaSubmitted) return;
+      betaSubmitted = false;
+      document.getElementById('beta-form-area').style.display = 'none';
+      document.getElementById('beta-success-area').style.display = 'block';
+    }
+  </script>
+
+  <!-- 문의하기 모달 -->
+  <div id="contact-modal" style="display: none; position: fixed; inset: 0; background: rgba(10,10,24,0.72); z-index: 300; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(6px);" onclick="if(event.target===this)closeContactModal()">
+    <div style="background: #fff; border-radius: 20px; padding: 32px 28px 28px; width: min(380px, 92vw); box-shadow: 0 24px 64px rgba(0,0,0,0.28); position: relative;">
+
+      <!-- 닫기 -->
+      <button onclick="closeContactModal()" style="position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: none; background: #f3f4f6; border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: #6b7280; display: flex; align-items: center; justify-content: center; font-family: inherit; line-height: 1;">×</button>
+
+      <p style="font-size: 0.78rem; font-weight: 700; color: var(--concept); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 4px;">MEDIGUARD</p>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: #1f2937; margin: 0 0 6px; letter-spacing: -0.02em;">문의하기</h3>
+      <p style="font-size: 0.88rem; color: #6b7280; margin: 0 0 22px; line-height: 1.6;">궁금한 점을 남겨주시면 빠르게 답변드리겠습니다.</p>
+
+      <div id="contact-form-area">
+        <iframe name="contact-hidden-iframe" style="display:none;" onload="onContactIframeLoad()"></iframe>
+        <form id="contact-form" action="https://formsubmit.co/hanowen0716@gmail.com" method="POST" target="contact-hidden-iframe" onsubmit="onContactSubmit(event)">
+          <input type="hidden" name="_subject" value="MEDIGUARD 문의하기" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="box" />
+          <input type="text" name="name" id="contact-name-input" placeholder="이름" required style="width: 100%; padding: 12px 14px; font-size: 0.92rem; border: 2px solid #e5e7eb; border-radius: 10px; box-sizing: border-box; font-family: inherit; margin-bottom: 10px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#423FEB'" onblur="this.style.borderColor='#e5e7eb'" />
+          <input type="email" name="email" id="contact-email-input" placeholder="이메일 주소" required style="width: 100%; padding: 12px 14px; font-size: 0.92rem; border: 2px solid #e5e7eb; border-radius: 10px; box-sizing: border-box; font-family: inherit; margin-bottom: 10px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#423FEB'" onblur="this.style.borderColor='#e5e7eb'" />
+          <textarea name="message" id="contact-message-input" placeholder="문의 내용을 입력해주세요" required rows="4" style="width: 100%; padding: 12px 14px; font-size: 0.92rem; border: 2px solid #e5e7eb; border-radius: 10px; box-sizing: border-box; font-family: inherit; margin-bottom: 10px; outline: none; transition: border-color 0.2s; resize: vertical; line-height: 1.6;" onfocus="this.style.borderColor='#423FEB'" onblur="this.style.borderColor='#e5e7eb'"></textarea>
+          <button type="submit" id="contact-submit-btn" style="width: 100%; padding: 13px; background: var(--concept); color: #fff; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(66,63,235,0.3); transition: opacity 0.2s;">문의 보내기</button>
+        </form>
+      </div>
+
+      <div id="contact-success-area" style="display: none; text-align: center; padding: 12px 0 8px;">
+        <div style="width: 52px; height: 52px; background: rgba(66,63,235,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M6 13.5l5 5 9-9" stroke="#423FEB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p style="font-size: 1.05rem; font-weight: 800; color: #1f2937; margin: 0 0 6px; letter-spacing: -0.02em;">문의가 접수되었습니다!</p>
+        <p style="font-size: 0.88rem; color: #6b7280; margin: 0; line-height: 1.6;">빠른 시일 내에 답변드리겠습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openContactModal() {
+      var modal = document.getElementById('contact-modal');
+      modal.style.display = 'flex';
+      document.getElementById('contact-name-input').value = '';
+      document.getElementById('contact-email-input').value = '';
+      document.getElementById('contact-message-input').value = '';
+      document.getElementById('contact-form-area').style.display = 'block';
+      document.getElementById('contact-success-area').style.display = 'none';
+      var btn = document.getElementById('contact-submit-btn');
+      btn.textContent = '문의 보내기';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      setTimeout(function() { document.getElementById('contact-name-input').focus(); }, 100);
+    }
+    function closeContactModal() {
+      document.getElementById('contact-modal').style.display = 'none';
+    }
+    var contactSubmitted = false;
+    function onContactSubmit(e) {
+      var btn = document.getElementById('contact-submit-btn');
+      btn.textContent = '전송 중...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+      contactSubmitted = true;
+    }
+    function onContactIframeLoad() {
+      if (!contactSubmitted) return;
+      contactSubmitted = false;
+      document.getElementById('contact-form-area').style.display = 'none';
+      document.getElementById('contact-success-area').style.display = 'block';
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
