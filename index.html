@@ -1372,10 +1372,12 @@
 </head>
 <body>
   <script>
-    // 인스타 인앱 브라우저 vh/svh 불안정 대응: 1페이지 높이를 JS로 고정
+    // 모바일 인앱 브라우저 vh/svh 불안정 대응: 1페이지 높이를 JS로 고정
     (function(){
-      var h = window.innerHeight;
-      document.documentElement.style.setProperty('--page1-h', h + 'px');
+      if (window.innerWidth <= 600) {
+        var h = window.innerHeight;
+        document.documentElement.style.setProperty('--page1-h', h + 'px');
+      }
     })();
   </script>
   <header>
