@@ -1329,29 +1329,29 @@
       .phone-mockup { max-width: 240px; }
       .phone-mockup .hero-ui-img { max-height: none; }
 
-      /* 3페이지 Solution: 위 여백 + 텍스트 2줄 + 전체 여백 */
-      .problem-page-section { padding: clamp(20px, 4vh, 36px) 16px clamp(16px, 3vh, 24px); }
-      .problem-page-label { margin-bottom: clamp(12px, 2.5vh, 20px); padding: 6px 16px; font-size: 0.78rem; }
+      /* Problem/Solution 컨테이너: 2페이지와 동일한 상단 배치 (5페이지 제외) */
+      .problem-page-section { padding: clamp(24px, 7vh, 56px) 16px clamp(16px, 3vh, 24px); justify-content: flex-start !important; }
+      .problem-page-label { margin-bottom: clamp(8px, 1.5vh, 14px); padding: 6px 16px; font-size: 0.78rem; }
       .problem-page-answer { font-size: 0.82rem !important; margin-bottom: clamp(6px, 1vh, 10px) !important; line-height: 1.55; }
 
-      /* 5페이지 다제약물: 여백 줄이기 */
-      .page-3 .problem-page-section { padding: 16px 12px 12px; }
+      /* 5페이지 다제약물: 중앙 유지 */
+      .page-3 .problem-page-section { padding: 16px 12px 12px; justify-content: center !important; }
       .page-3 .problem-page-label { margin-bottom: 10px; }
 
-      /* 6페이지 상호작용: 세로 정 중앙 정렬 */
+      /* 6페이지 상호작용: 상단 배치 */
       .interaction-images { gap: 10px !important; }
       .interaction-images > div { max-width: 45% !important; }
       .interaction-images img { max-height: 50svh !important; border-radius: 16px !important; }
-      .page:has(.interaction-images) .problem-page-section { padding: 0 12px !important; justify-content: center !important; height: 100%; }
+      .page:has(.interaction-images) .problem-page-section { padding: clamp(24px, 7vh, 56px) 12px 12px !important; justify-content: flex-start !important; }
       .page:has(.interaction-images) .problem-page-label { margin-bottom: 6px; }
       .page:has(.interaction-images) .problem-page-answer { margin-bottom: 6px !important; }
 
-      /* 9페이지: 원 3개 가로 병렬 유지, 크기 축소, 여백 줄이기 */
+      /* 9페이지: 모바일 - 10페이지와 동일한 텍스트 크기 */
       .page-5 .data-section .data-section-inner { margin-top: -2vh; }
-      .page-5 .data-section .data-heading { font-size: 1.15rem !important; margin-bottom: 8px !important; }
-      .page-5 .data-section .data-catchphrase { font-size: 0.82rem; margin-bottom: 12px !important; }
-      .page-5 .data-section .data-section-inner > p:first-child { margin-bottom: 8px !important; }
-      .page-5 .data-section .data-circles { gap: 10px; flex-wrap: nowrap; margin-bottom: 16px; }
+      .page-5 .data-section .data-brand { font-size: clamp(1.6rem, 5.5vw, 2.8rem) !important; margin-bottom: clamp(14px, 2.5vh, 24px) !important; }
+      .page-5 .data-section .data-heading { font-size: clamp(1.6rem, 5.5vw, 2.8rem) !important; margin-bottom: clamp(14px, 2.5vh, 24px) !important; }
+      .page-5 .data-section .data-catchphrase { font-size: clamp(0.9rem, 2.2vw, 1.05rem) !important; margin-bottom: 12px !important; }
+      .page-5 .data-section .data-circles { gap: 10px; flex-wrap: nowrap; margin-bottom: 12px; }
       .page-5 .data-section .data-circle { width: 100px; height: 100px; }
       .page-5 .data-section .data-circle-num { font-size: 1.4rem; }
       .page-5 .data-section .data-circle-label { font-size: 0.52rem; margin-top: 3px; max-width: 80px; }
@@ -1979,9 +1979,9 @@
     <!-- 페이지 8: 가족 복약 공유 데모 -->
     <div class="page" id="family-demo-page" style="background: #f0f4ff; border-top: 1px solid rgba(0,0,0,0.14); display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: clamp(24px, 5vh, 56px);">
       <style>
-        #family-demo-page .fd-top { text-align: center; margin-bottom: clamp(10px, 2vh, 20px); flex-shrink: 0; }
+        #family-demo-page .fd-top { text-align: center; margin-bottom: clamp(5px, 1vh, 10px); flex-shrink: 0; }
         #family-demo-page .fd-top-label { display: inline-block; padding: clamp(6px,1vh,10px) clamp(14px,2.5vw,22px); font-size: clamp(0.78rem,1.8vw,0.95rem); font-weight: 700; color: #fff; background: #423FEB; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
-        #family-demo-page .fd-top-desc { margin: clamp(8px,1.5vh,14px) 0 0; font-size: clamp(1.1rem,3vw,1.45rem); color: #1f2937; font-weight: 800; line-height: 1.4; letter-spacing: -0.02em; }
+        #family-demo-page .fd-top-desc { margin: clamp(4px,0.8vh,8px) 0 0; font-size: clamp(1.1rem,3vw,1.45rem); color: #1f2937; font-weight: 800; line-height: 1.4; letter-spacing: -0.02em; }
         #family-demo-page .fd-wrap {
           display: flex; flex-direction: row; gap: clamp(24px,5vw,60px);
           align-items: center; justify-content: center;
@@ -2058,10 +2058,10 @@
 
         /* 모바일 최적화 */
         @media (max-width: 600px) {
-          #family-demo-page { padding-top: 12px !important; }
+          #family-demo-page { padding-top: clamp(24px, 7vh, 56px) !important; }
           #family-demo-page .fd-top-label { font-size: 0.72rem; padding: 5px 14px; }
-          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 4px !important; margin-bottom: 0 !important; }
-          #family-demo-page .fd-top { margin-bottom: 2px !important; }
+          #family-demo-page .fd-top-desc { font-size: 0.88rem !important; margin-top: 2px !important; margin-bottom: 0 !important; }
+          #family-demo-page .fd-top { margin-bottom: 0px !important; }
           #family-demo-page .fd-wrap { gap: 10px; padding: 0 6px; }
           #family-demo-page .fd-col { max-width: 48%; gap: 3px; }
           #family-demo-page .fd-col-title { margin-bottom: 2px !important; }
@@ -2287,10 +2287,10 @@
     <section class="data-section">
       <div class="data-section-inner">
         <!-- MEDIGUARD 브랜드 레이블 -->
-        <p style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; color: var(--concept); letter-spacing: -0.03em; line-height: 1.25; margin: 0 0 clamp(14px, 2.5vh, 24px); text-transform: uppercase;">MEDIGUARD</p>
+        <p class="data-brand" style="font-size: clamp(1.25rem, 3.5vw, 1.75rem); font-weight: 800; color: var(--concept); letter-spacing: -0.03em; line-height: 1.25; margin: 0 0 clamp(8px, 1.5vh, 16px); text-transform: uppercase;">MEDIGUARD</p>
 
-        <h2 class="data-heading" style="font-size: clamp(1.6rem, 5.5vw, 2.8rem); font-weight: 800; margin: 0 0 clamp(14px, 2.5vh, 24px); letter-spacing: -0.03em;">데이터로 복약을 관리합니다</h2>
-        <p class="data-catchphrase" style="font-size: clamp(0.9rem, 2.2vw, 1.05rem); margin-bottom: clamp(24px, 4vh, 40px);">신뢰할 수 있는 데이터 기반으로,<br />더 안전한 복약 경험을 제공합니다</p>
+        <h2 class="data-heading" style="font-weight: 800; letter-spacing: -0.03em;">데이터로 복약을 관리합니다</h2>
+        <p class="data-catchphrase">신뢰할 수 있는 데이터 기반으로,<br />더 안전한 복약 경험을 제공합니다</p>
 
         <!-- 데이터 서클 -->
         <div class="data-circles">
