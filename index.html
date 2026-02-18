@@ -1341,9 +1341,10 @@
       /* 5페이지 다제약물: 중앙 유지 */
       .page-3 .problem-page-section { padding: 16px 12px 12px; justify-content: center !important; }
       .page-3 .problem-page-label { margin-bottom: 10px; }
-      /* 3페이지 이미지: 2페이지 폰 1개 크기와 동일 */
-      #page-3-solution .problem-page-answer + div { max-width: 48% !important; }
-      #page-3-solution .problem-page-answer + div img { height: clamp(300px, 55svh, 420px); object-fit: contain; }
+      /* 3페이지 이미지: 크기 키우고 여백 충분히 */
+      #page-3-solution .problem-page-answer + div { max-width: 56% !important; }
+      #page-3-solution .problem-page-answer + div img { height: clamp(340px, 60svh, 460px); object-fit: contain; }
+      #page-3-solution .problem-page-answer { margin-bottom: clamp(16px, 3vh, 28px) !important; }
 
       /* 6페이지 상호작용: 상단 배치, 이미지 2페이지 폰 크기와 동일 */
       .interaction-images { gap: 10px !important; }
@@ -1351,7 +1352,7 @@
       .interaction-images img { height: clamp(300px, 55svh, 420px) !important; max-height: none !important; border-radius: 16px !important; object-fit: contain !important; }
       .page:has(.interaction-images) .problem-page-section { padding: clamp(24px, 7vh, 56px) 12px 12px !important; justify-content: flex-start !important; }
       .page:has(.interaction-images) .problem-page-label { margin-bottom: clamp(8px, 1.5vh, 14px); }
-      .page:has(.interaction-images) .problem-page-answer { margin-bottom: clamp(10px, 2vh, 18px) !important; }
+      .page:has(.interaction-images) .problem-page-answer { margin-bottom: clamp(16px, 3vh, 28px) !important; }
 
       /* 9페이지: 모바일 - 10페이지와 동일한 텍스트 크기 */
       .page-5 .data-section .data-section-inner { margin-top: -2vh; }
@@ -1941,7 +1942,7 @@
     <!-- 페이지 4: 내가 먹고 있는 약들 -->
     <div class="page page-2">
     <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0;">
-      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">내가 먹고 있는 약들, 같이 먹어도 안전한걸까요?</p>
+      <p style="font-size: clamp(1.2rem, 5.5vw, 2rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.5; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">내가 먹고 있는 약들,<br />같이 먹어도 안전한걸까요?</p>
     </section>
     </div>
 
@@ -1980,8 +1981,8 @@
     <div class="page page-4" style="background-image: url('할머니.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(100, 100, 100, 0.35); backdrop-filter: blur(4px);"></div>
     <section class="problem-page-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0; background: transparent; gap: 0; height: 100%; width: 100%; position: relative; z-index: 1;">
-      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0 0 clamp(16px, 3vh, 28px); line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">부모님 약이 늘 걱정인데 매번 찾아가기 힘드셨나요?</p>
-      <p style="font-size: clamp(0.9rem, 4vw, 1.5rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">기존 복약 앱은 어르신이 사용하기 어려우셨나요?</p>
+      <p style="font-size: clamp(1.2rem, 5.5vw, 2rem); font-weight: 700; color: #ffffff; margin: 0 0 clamp(16px, 3vh, 28px); line-height: 1.5; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">부모님 약이 늘 걱정인데<br />매번 찾아가기 힘드셨나요?</p>
+      <p style="font-size: clamp(1.2rem, 5.5vw, 2rem); font-weight: 700; color: #ffffff; margin: 0; line-height: 1.5; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); max-width: 95%; padding: 0 20px;">기존 복약 앱은 어르신이 사용하기<br />어려우셨나요?</p>
     </section>
     </div>
 
