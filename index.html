@@ -56,12 +56,9 @@
     .page {
       position: relative;
       width: 100%;
-      min-height: 100vh;
-      min-height: 100svh;
-      height: 100vh;
-      height: 100svh;
-      max-height: 100vh;
-      max-height: 100svh;
+      min-height: var(--vh-fix, 100svh);
+      height: var(--vh-fix, 100svh);
+      max-height: var(--vh-fix, 100svh);
       box-sizing: border-box;
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -71,7 +68,7 @@
       overflow: hidden;
     }
     /* 전체 배경 통일, 구분선 */
-    .page-1 { background: #f0f4ff; clip-path: inset(0); height: var(--page1-h, 100vh); min-height: var(--page1-h, 100vh); max-height: var(--page1-h, 100vh); }
+    .page-1 { background: #f0f4ff; clip-path: inset(0); }
     .page-2 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); background-image: url('Frame 8 (2).png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
     .page-3 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
     .page-4 { background: #f0f4ff; border-top: 1px solid rgba(0, 0, 0, 0.14); }
@@ -1372,11 +1369,11 @@
 </head>
 <body>
   <script>
-    // 모바일 인앱 브라우저 vh/svh 불안정 대응: 1페이지 높이를 JS로 고정
+    // 모바일 인앱 브라우저 vh/svh 불안정 대응: 모든 페이지 높이를 JS로 고정
     (function(){
       if (window.innerWidth <= 600) {
         var h = window.innerHeight;
-        document.documentElement.style.setProperty('--page1-h', h + 'px');
+        document.documentElement.style.setProperty('--vh-fix', h + 'px');
       }
     })();
   </script>
