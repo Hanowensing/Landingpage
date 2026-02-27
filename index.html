@@ -2406,10 +2406,10 @@
   </style>
 
   <!-- 베타테스트 신청 모달 (봉투 애니메이션) -->
-  <div id="beta-signup-modal" style="display: none; position: fixed; inset: 0; background: rgba(10,10,24,0.72); z-index: 300; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(6px);">
+  <div id="beta-signup-modal" style="display: none; position: fixed; inset: 0; background: rgba(10,10,24,0.72); z-index: 300; align-items: flex-start; justify-content: center; padding: 20px; box-sizing: border-box; backdrop-filter: blur(6px); overflow-y: auto;">
 
     <!-- 봉투 + 카드 전체 래퍼 -->
-    <div id="env-wrapper" style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <div id="env-wrapper" style="display: flex; flex-direction: column; align-items: center; position: relative; margin: auto;">
 
       <!-- 초대장 카드 (봉투에서 올라옴) -->
       <div id="invite-card" style="background: #fff; border-radius: 20px; padding: 30px 26px 26px; width: min(320px, 88vw); box-shadow: 0 24px 64px rgba(0,0,0,0.35); position: relative; z-index: 10; transform: translateY(140px); opacity: 0; pointer-events: none; transition: transform 0.7s cubic-bezier(0.34, 1.15, 0.64, 1), opacity 0.4s ease;">
