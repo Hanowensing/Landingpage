@@ -1369,11 +1369,16 @@
 </head>
 <body>
   <script>
-    // 모바일 인앱 브라우저 vh/svh 불안정 대응: 모든 페이지 높이를 JS로 고정
+    // 모바일 인앱 브라우저 vh/svh 불안정 대응: html + 모든 페이지 높이를 JS로 고정
     (function(){
       if (window.innerWidth <= 600) {
         var h = window.innerHeight;
         document.documentElement.style.setProperty('--vh-fix', h + 'px');
+        // html 자체도 고정 (뷰포트 변화 시 스크롤 컨테이너 재계산 방지)
+        document.documentElement.style.height = h + 'px';
+        document.documentElement.style.maxHeight = h + 'px';
+        document.documentElement.style.overflow = 'hidden';
+        document.documentElement.style.overflowY = 'scroll';
       }
     })();
   </script>
@@ -2349,7 +2354,7 @@
       <button onclick="openBetaModal()" style="display: block; width: 100%; max-width: min(480px, 88vw); padding: clamp(16px, 3vh, 22px) 32px; background: var(--concept); color: #ffffff; font-size: clamp(1rem, 2.5vw, 1.15rem); font-weight: 700; border-radius: 16px; border: none; cursor: pointer; font-family: inherit; letter-spacing: -0.01em; margin-bottom: clamp(12px, 2vh, 18px); transition: opacity 0.2s; box-shadow: 0 4px 16px rgba(66,63,235,0.35);">베타테스트 신청하기</button>
 
       <!-- 안내 문구 -->
-      <p style="font-size: clamp(0.72rem, 1.6vw, 0.82rem); color: var(--gray-400); margin: 0 0 clamp(24px, 4.5vh, 44px);">이메일을 남겨주시면 베타테스트 초대장을 보내드립니다</p>
+      <p style="font-size: clamp(0.72rem, 1.6vw, 0.82rem); color: var(--gray-400); margin: 0 0 clamp(24px, 4.5vh, 44px);">이메일과 휴대폰 번호를 남겨주시면 베타테스트 초대장을 보내드립니다</p>
 
       <!-- 체크리스트 -->
       <div class="beta-checklist" style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 48px); flex-wrap: wrap;">
@@ -2414,7 +2419,7 @@
 
         <p style="font-size: 0.78rem; font-weight: 700; color: var(--concept); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 4px;">MEDIGUARD</p>
         <h3 style="font-size: 1.25rem; font-weight: 800; color: #1f2937; margin: 0 0 6px; letter-spacing: -0.02em;">베타테스트 신청하기</h3>
-        <p style="font-size: 0.88rem; color: #6b7280; margin: 0 0 22px; line-height: 1.6;">이메일을 남겨주시면<br>베타테스트 초대장을 보내드립니다.</p>
+        <p style="font-size: 0.88rem; color: #6b7280; margin: 0 0 22px; line-height: 1.6;">이메일과 휴대폰 번호를 남겨주시면<br>베타테스트 초대장을 보내드립니다.</p>
 
         <div id="beta-form-area">
           <iframe name="beta-hidden-iframe" style="display:none;" onload="onBetaIframeLoad()"></iframe>
@@ -2424,6 +2429,8 @@
             <input type="hidden" name="_template" value="box" />
             <input type="email" name="email" id="beta-email-input" placeholder="이메일 주소를 입력해주세요" required style="width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: inherit; margin-bottom: 8px; outline: none; transition: border-color 0.2s;" />
             <p id="beta-email-error" style="display: none; font-size: 0.78rem; color: #dc2626; margin: 0 0 8px;">올바른 이메일 주소를 입력해주세요.</p>
+            <input type="tel" name="phone" id="beta-phone-input" placeholder="휴대폰 번호를 입력해주세요 (예: 010-1234-5678)" required style="width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: inherit; margin-bottom: 8px; outline: none; transition: border-color 0.2s;" />
+            <p id="beta-phone-error" style="display: none; font-size: 0.78rem; color: #dc2626; margin: 0 0 8px;">올바른 휴대폰 번호를 입력해주세요.</p>
             <button type="submit" id="beta-submit-btn" style="width: 100%; padding: 13px; background: var(--concept); color: #fff; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(66,63,235,0.3); transition: opacity 0.2s;">신청하기</button>
           </form>
         </div>
@@ -2459,6 +2466,9 @@
       document.getElementById('beta-success-area').style.display = 'none';
       document.getElementById('beta-email-error').style.display = 'none';
       document.getElementById('beta-email-input').style.borderColor = '#e5e7eb';
+      document.getElementById('beta-phone-input').value = '';
+      document.getElementById('beta-phone-error').style.display = 'none';
+      document.getElementById('beta-phone-input').style.borderColor = '#e5e7eb';
       document.getElementById('beta-submit-btn').textContent = '신청하기';
       document.getElementById('beta-submit-btn').disabled = false;
       document.getElementById('beta-submit-btn').style.opacity = '1';
@@ -2507,18 +2517,34 @@
     var betaEmailInput = document.getElementById('beta-email-input');
     betaEmailInput.addEventListener('focus', function() { this.style.borderColor = '#423FEB'; });
     betaEmailInput.addEventListener('blur',  function() { this.style.borderColor = '#e5e7eb'; });
+    var betaPhoneInput = document.getElementById('beta-phone-input');
+    betaPhoneInput.addEventListener('focus', function() { this.style.borderColor = '#423FEB'; });
+    betaPhoneInput.addEventListener('blur',  function() { this.style.borderColor = '#e5e7eb'; });
 
     var betaSubmitted = false;
     function onBetaSubmit(e) {
       var email = document.getElementById('beta-email-input').value.trim();
+      var phone = document.getElementById('beta-phone-input').value.trim();
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var phoneRegex = /^0\d{1,2}[-.\s]?\d{3,4}[-.\s]?\d{4}$/;
+      var valid = true;
       if (!emailRegex.test(email)) {
         e.preventDefault();
         document.getElementById('beta-email-input').style.borderColor = '#dc2626';
         document.getElementById('beta-email-error').style.display = 'block';
-        return;
+        valid = false;
+      } else {
+        document.getElementById('beta-email-error').style.display = 'none';
       }
-      document.getElementById('beta-email-error').style.display = 'none';
+      if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+        e.preventDefault();
+        document.getElementById('beta-phone-input').style.borderColor = '#dc2626';
+        document.getElementById('beta-phone-error').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('beta-phone-error').style.display = 'none';
+      }
+      if (!valid) return;
       var btn = document.getElementById('beta-submit-btn');
       btn.textContent = '전송 중...';
       btn.style.opacity = '0.7';
