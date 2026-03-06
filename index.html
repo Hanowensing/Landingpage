@@ -2431,6 +2431,7 @@
             <p id="beta-email-error" style="display: none; font-size: 0.78rem; color: #dc2626; margin: 0 0 8px;">올바른 이메일 주소를 입력해주세요.</p>
             <input type="tel" name="phone" id="beta-phone-input" placeholder="휴대폰 번호를 입력해주세요 (예: 010-1234-5678)" required style="width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: inherit; margin-bottom: 8px; outline: none; transition: border-color 0.2s;" />
             <p id="beta-phone-error" style="display: none; font-size: 0.78rem; color: #dc2626; margin: 0 0 8px;">올바른 휴대폰 번호를 입력해주세요.</p>
+            <input type="text" name="disease" id="beta-disease-input" placeholder="가지고 계신 질환 (선택, 예: 당뇨, 갑상선)" style="width: 100%; padding: 13px 16px; font-size: 0.95rem; border: 2px solid #e5e7eb; border-radius: 12px; box-sizing: border-box; font-family: inherit; margin-bottom: 8px; outline: none; transition: border-color 0.2s;" />
             <button type="submit" id="beta-submit-btn" style="width: 100%; padding: 13px; background: var(--concept); color: #fff; font-size: 0.95rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(66,63,235,0.3); transition: opacity 0.2s;">신청하기</button>
           </form>
         </div>
@@ -2469,6 +2470,8 @@
       document.getElementById('beta-phone-input').value = '';
       document.getElementById('beta-phone-error').style.display = 'none';
       document.getElementById('beta-phone-input').style.borderColor = '#e5e7eb';
+      document.getElementById('beta-disease-input').value = '';
+      document.getElementById('beta-disease-input').style.borderColor = '#e5e7eb';
       document.getElementById('beta-submit-btn').textContent = '신청하기';
       document.getElementById('beta-submit-btn').disabled = false;
       document.getElementById('beta-submit-btn').style.opacity = '1';
@@ -2520,6 +2523,9 @@
     var betaPhoneInput = document.getElementById('beta-phone-input');
     betaPhoneInput.addEventListener('focus', function() { this.style.borderColor = '#423FEB'; });
     betaPhoneInput.addEventListener('blur',  function() { this.style.borderColor = '#e5e7eb'; });
+    var betaDiseaseInput = document.getElementById('beta-disease-input');
+    betaDiseaseInput.addEventListener('focus', function() { this.style.borderColor = '#423FEB'; });
+    betaDiseaseInput.addEventListener('blur',  function() { this.style.borderColor = '#e5e7eb'; });
 
     var betaSubmitted = false;
     function onBetaSubmit(e) {
